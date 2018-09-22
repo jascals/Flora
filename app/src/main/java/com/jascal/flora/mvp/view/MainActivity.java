@@ -9,9 +9,12 @@ import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
 import com.jascal.flora.mvp.MainContract;
 import com.jascal.flora.mvp.presenter.MainPresenter;
+import com.jascal.flora.net.bean.Feed;
 import com.jascal.ophelia_annotation.BindView;
 import com.jascal.ophelia_annotation.OnClick;
 import com.jascal.ophelia_api.Ophelia;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity implements MainContract.view {
     private MainContract.presenter presenter;
@@ -39,8 +42,8 @@ public class MainActivity extends BaseActivity implements MainContract.view {
     }
 
     @Override
-    public void update(String shots) {
-        textView.setText(shots);
+    public void update(List<Feed> feeds) {
+        textView.setText(feeds.get(0).getUrl());
     }
 
     @Override

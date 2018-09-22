@@ -1,8 +1,11 @@
 package com.jascal.flora.mvp.model;
 
 import com.jascal.flora.base.BaseModel;
+import com.jascal.flora.net.bean.Feed;
 import com.jascal.flora.net.bean.Response;
 import com.jascal.flora.net.service.FeedService;
+
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -63,13 +66,13 @@ public class FeedModel implements BaseModel {
 
                     @Override
                     public void onNext(Response response) {
-                        callback.onSuccess(response.toString());
+                        callback.onSuccess(response.getFeedList());
                     }
                 });
     }
 
     public interface Callback {
-        void onSuccess(String result);
+        void onSuccess(List<Feed> results);
 
         void onFailure(String message);
     }
