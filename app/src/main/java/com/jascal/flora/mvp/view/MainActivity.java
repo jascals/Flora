@@ -7,14 +7,14 @@ import android.widget.Toast;
 
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
-import com.jascal.flora.mvp.OAuthContract;
-import com.jascal.flora.mvp.presenter.OAuthPresenter;
+import com.jascal.flora.mvp.MainContract;
+import com.jascal.flora.mvp.presenter.MainPresenter;
 import com.jascal.ophelia_annotation.BindView;
 import com.jascal.ophelia_annotation.OnClick;
 import com.jascal.ophelia_api.Ophelia;
 
-public class MainActivity extends BaseActivity implements OAuthContract.view {
-    private OAuthContract.presenter presenter;
+public class MainActivity extends BaseActivity implements MainContract.view {
+    private MainContract.presenter presenter;
 
     @BindView(R.id.text)
     TextView textView;
@@ -30,11 +30,11 @@ public class MainActivity extends BaseActivity implements OAuthContract.view {
         setContentView(R.layout.activity_main);
 
         Ophelia.bind(this);
-        new OAuthPresenter(this);
+        new MainPresenter(this);
     }
 
     @Override
-    public void setPresenter(OAuthContract.presenter presenter) {
+    public void setPresenter(MainContract.presenter presenter) {
         this.presenter = presenter;
     }
 

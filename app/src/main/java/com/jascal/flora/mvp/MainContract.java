@@ -2,9 +2,9 @@ package com.jascal.flora.mvp;
 
 import android.content.Context;
 
-public interface OAuthContract {
+public interface MainContract {
     interface view {
-        void setPresenter(OAuthContract.presenter presenter);
+        void setPresenter(MainContract.presenter presenter);
 
         void update(String shots);
 

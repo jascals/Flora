@@ -5,7 +5,7 @@ import com.jascal.flora.net.bean.Response;
 import retrofit2.http.GET;
 import rx.Observable;
 
-public interface ShotService {
+public interface FeedService {
 
     @GET("feed-app")
     Observable<Response> getFeedList();

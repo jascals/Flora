@@ -4,13 +4,13 @@ import android.content.Context;
 
 import com.jascal.flora.base.BasePresenter;
 import com.jascal.flora.cache.sp.SpHelper;
-import com.jascal.flora.mvp.OAuthContract;
-import com.jascal.flora.mvp.model.ShotsModel;
+import com.jascal.flora.mvp.MainContract;
+import com.jascal.flora.mvp.model.FeedModel;
 
-public class OAuthPresenter extends BasePresenter implements OAuthContract.presenter {
-    private OAuthContract.view view;
+public class MainPresenter extends BasePresenter implements MainContract.presenter {
+    private MainContract.view view;
 
-    public OAuthPresenter(OAuthContract.view view) {
+    public MainPresenter(MainContract.view view) {
         this.view = view;
         this.view.setPresenter(this);
     }
@@ -19,9 +19,9 @@ public class OAuthPresenter extends BasePresenter implements OAuthContract.prese
     public void getShots(Context context) {
         String taken = (String) SpHelper.getInstance(context).get("access_token", "null");
 
-        ShotsModel shotsModel = new ShotsModel();
-        shotsModel.setTaken(taken);
-        shotsModel.setCallback(new ShotsModel.Callback() {
+        FeedModel feedModel = new FeedModel();
+        feedModel.setTaken(taken);
+        feedModel.setCallback(new FeedModel.Callback() {
             @Override
             public void onSuccess(String result) {
                 view.update(result);
@@ -32,7 +32,7 @@ public class OAuthPresenter extends BasePresenter implements OAuthContract.prese
                 view.error(message);
             }
         });
-        shotsModel.getFeed();
+        feedModel.getFeed();
     }
 
 

@@ -2,7 +2,7 @@ package com.jascal.flora.mvp.model;
 
 import com.jascal.flora.base.BaseModel;
 import com.jascal.flora.net.bean.Response;
-import com.jascal.flora.net.service.ShotService;
+import com.jascal.flora.net.service.FeedService;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -15,7 +15,7 @@ import rx.schedulers.Schedulers;
 
 import static com.jascal.flora.net.Config.BASE_URL;
 
-public class ShotsModel implements BaseModel {
+public class FeedModel implements BaseModel {
     private String taken;
 
     public void setCallback(Callback callback) {
@@ -45,9 +45,9 @@ public class ShotsModel implements BaseModel {
                 .client(client)
                 .build();
 
-        ShotService shotService = retrofit.create(ShotService.class);
+        FeedService feedService = retrofit.create(FeedService.class);
 
-        shotService.getFeedList()
+        feedService.getFeedList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<Response>() {
