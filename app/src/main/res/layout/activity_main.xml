@@ -5,24 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".mvp.view.MainActivity">
 
-    <WebView
-        android:id="@+id/oauth_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-    <Button
-        android:id="@+id/taken"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="taken" />
-
-
     <Button
         android:id="@+id/shots"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@+id/taken"
         android:text="shots" />
 
     <TextView

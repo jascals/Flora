@@ -6,10 +6,6 @@ public interface OAuthContract {
     interface view {
         void setPresenter(OAuthContract.presenter presenter);
 
-        void turn();
-
-        void showError();
-
         void update(String shots);
 
         void error(String message);
@@ -17,8 +13,6 @@ public interface OAuthContract {
     }
 
     interface presenter {
-        void oAuth(Context context);
-
         void getShots(Context context);
     }
 }
