@@ -1,12 +1,14 @@
 package com.jascal.flora.mvp.presenter;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.jascal.flora.base.BasePresenter;
 import com.jascal.flora.cache.sp.SpHelper;
 import com.jascal.flora.mvp.OAuthContract;
 import com.jascal.flora.mvp.model.OAuthModel;
+import com.jascal.flora.mvp.model.ShotsModel;
 import com.jascal.flora.net.bean.Taken;
 
 public class OAuthPresenter extends BasePresenter implements OAuthContract.presenter {
@@ -26,7 +28,8 @@ public class OAuthPresenter extends BasePresenter implements OAuthContract.prese
         oAuthModel.setCallback(new OAuthModel.Callback() {
             @Override
             public void onSuccess(Taken taken) {
-                SpHelper.getInstance(context).put("taken", taken.getAccess_token());
+                SpHelper.getInstance(context).put("access_token", taken.getAccess_token());
+                Log.d("dribbble", taken.getAccess_token());
                 view.turn();
             }
 
@@ -38,5 +41,26 @@ public class OAuthPresenter extends BasePresenter implements OAuthContract.prese
         });
         oAuthModel.execute();
     }
+
+    @Override
+    public void getShots(Context context) {
+        String taken = (String) SpHelper.getInstance(context).get("access_token", "null");
+
+        ShotsModel shotsModel = new ShotsModel();
+        shotsModel.setTaken(taken);
+        shotsModel.setCallback(new ShotsModel.Callback() {
+            @Override
+            public void onSuccess(String result) {
+                view.update(result);
+            }
+
+            @Override
+            public void onFailure(String message) {
+                view.error(message);
+            }
+        });
+        shotsModel.get();
+    }
+
 
 }

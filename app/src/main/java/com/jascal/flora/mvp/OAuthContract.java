@@ -9,9 +9,16 @@ public interface OAuthContract {
         void turn();
 
         void showError();
+
+        void update(String shots);
+
+        void error(String message);
+
     }
 
     interface presenter {
         void oAuth(Context context);
+
+        void getShots(Context context);
     }
 }

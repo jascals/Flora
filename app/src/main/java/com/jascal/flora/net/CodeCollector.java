@@ -22,6 +22,8 @@ public class CodeCollector extends WebViewClient {
 
             SpHelper.getInstance(context).put("code", a[a.length - 1]);
             Log.d("dribbble response", "code=" + a[a.length - 1]);
+
+            view.destroy();
         }
     }
 }

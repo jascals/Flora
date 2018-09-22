@@ -3,6 +3,7 @@ package com.jascal.flora.mvp.view;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jascal.flora.R;
@@ -21,9 +22,17 @@ public class MainActivity extends BaseActivity implements OAuthContract.view {
     @BindView(R.id.oauth_view)
     WebView webView;
 
+    @BindView(R.id.text)
+    TextView textView;
+
     @OnClick(R.id.taken)
     void get(View view) {
         presenter.oAuth(this);
+    }
+
+    @OnClick(R.id.shots)
+    void requestShots(View view) {
+        presenter.getShots(this);
     }
 
     @Override
@@ -51,5 +60,15 @@ public class MainActivity extends BaseActivity implements OAuthContract.view {
     @Override
     public void showError() {
         Toast.makeText(this, "error", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void update(String shots) {
+        textView.setText(shots);
+    }
+
+    @Override
+    public void error(String message) {
+        Toast.makeText(this, "get shots error:" + message, Toast.LENGTH_LONG).show();
     }
 }
