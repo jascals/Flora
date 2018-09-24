@@ -1,6 +1,8 @@
 package com.jascal.flora.mvp.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -9,6 +11,7 @@ import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
 import com.jascal.flora.mvp.MainContract;
 import com.jascal.flora.mvp.presenter.MainPresenter;
+import com.jascal.flora.mvp.view.adapter.FeedAdapter;
 import com.jascal.flora.net.bean.Feed;
 import com.jascal.ophelia_annotation.BindView;
 import com.jascal.ophelia_annotation.OnClick;
@@ -19,8 +22,8 @@ import java.util.List;
 public class MainActivity extends BaseActivity implements MainContract.view {
     private MainContract.presenter presenter;
 
-    @BindView(R.id.text)
-    TextView textView;
+    @BindView(R.id.recycler)
+    RecyclerView recyclerView;
 
     @OnClick(R.id.shots)
     void requestShots(View view) {
@@ -43,7 +46,10 @@ public class MainActivity extends BaseActivity implements MainContract.view {
 
     @Override
     public void update(List<Feed> feeds) {
-        textView.setText(feeds.get(0).getUrl());
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
+        FeedAdapter feedAdapter = new FeedAdapter(feeds);
+        recyclerView.setAdapter(feedAdapter);
     }
 
     @Override
