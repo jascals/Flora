@@ -16,5 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
+        android:maxEms="25"
+        android:maxLines="1"
         android:text="Hello World!" />
 </LinearLayout>

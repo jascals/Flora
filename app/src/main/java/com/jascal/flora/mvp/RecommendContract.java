@@ -6,9 +6,10 @@ import com.jascal.flora.net.bean.Feed;
 
 import java.util.List;
 
-public interface MainContract {
+public interface RecommendContract {
+
     interface view {
-        void setPresenter(MainContract.presenter presenter);
+        void setPresenter(RecommendContract.presenter presenter);
 
         void update(List<Feed> feeds);
 
@@ -19,4 +20,5 @@ public interface MainContract {
     interface presenter {
         void getShots(Context context);
     }
+
 }

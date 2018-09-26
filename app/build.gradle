@@ -31,9 +31,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
-    implementation 'com.github.MashirosBaumkuchen.Ophelia:ophelia-api:v0.81'
-    implementation 'com.github.MashirosBaumkuchen.Ophelia:ophelia-annotation:v0.81'
-    annotationProcessor 'com.github.MashirosBaumkuchen.Ophelia:ophelia-compiler:v0.81'
+    implementation 'com.github.MashirosBaumkuchen.Ophelia:ophelia-api:v1.0'
+    implementation 'com.github.MashirosBaumkuchen.Ophelia:ophelia-annotation:v1.0'
+    annotationProcessor 'com.github.MashirosBaumkuchen.Ophelia:ophelia-compiler:v1.0'
 
     implementation 'com.facebook.fresco:fresco:1.8.0'
 

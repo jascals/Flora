@@ -5,9 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".mvp.view.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
