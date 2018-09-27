@@ -1,13 +1,18 @@
 package com.jascal.flora.mvp.view.adapter;
 
 import android.net.Uri;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.jascal.flora.R;
 import com.jascal.flora.net.Config;
 import com.jascal.flora.net.bean.Feed;
@@ -32,8 +37,6 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         Feed feed = mList.get(position);
 
-        holder.text.setText(feed.getExcerpt());
-
         if (feed.getImage_count() > 0) {
             Uri uri = Uri.parse(Config.BASE_IMAGE_PATH +
                     feed.getImages().get(0).getUser_id() +
@@ -41,8 +44,23 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
                     feed.getImages().get(0).getImg_id() +
                     ".jpg");
             Log.d("fresco", uri.toString());
-            holder.img.setImageURI(uri);
+
+            ResizeOptions resizeOptions = new ResizeOptions(200, 600);
+
+            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                    .setResizeOptions(resizeOptions)
+                    .build();
+
+            holder.img.setController(
+                    Fresco.newDraweeControllerBuilder()
+                            .setOldController(holder.img.getController())
+                            .setImageRequest(request)
+                            .build()
+            );
+
         }
+
+        holder.text.setText(feed.getContent());
     }
 
     @Override
@@ -51,13 +69,16 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        CardView cardView;
         SimpleDraweeView img;
         TextView text;
 
         ViewHolder(View itemView) {
             super(itemView);
+//            cardView = (CardView) itemView;
             img = (SimpleDraweeView) itemView.findViewById(R.id.item_img);
             text = (TextView) itemView.findViewById(R.id.item_text);
         }
     }
+
 }
