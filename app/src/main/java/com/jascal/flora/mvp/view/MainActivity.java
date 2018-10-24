@@ -24,5 +24,6 @@ public class MainActivity extends BaseActivity {
 
         transaction.replace(R.id.content, new RecommendFragment());
         transaction.commit();
+
     }
 }

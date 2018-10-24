@@ -46,6 +46,8 @@ public class RecommendFragment extends BaseFragment implements RecommendContract
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
         presenter.getShots(getContext());
+
+
     }
 
     @Override
