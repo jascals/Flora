@@ -6,10 +6,10 @@ import com.jascal.flora.net.bean.Feed;
 
 import java.util.List;
 
-public interface RecommendContract {
+public interface MainContract {
 
     interface view {
-        void setPresenter(RecommendContract.presenter presenter);
+        void setPresenter(MainContract.presenter presenter);
 
         void update(List<Feed> feeds);
 

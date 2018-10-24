@@ -4,16 +4,16 @@ import android.content.Context;
 
 import com.jascal.flora.base.BasePresenter;
 import com.jascal.flora.cache.sp.SpHelper;
-import com.jascal.flora.mvp.RecommendContract;
+import com.jascal.flora.mvp.MainContract;
 import com.jascal.flora.mvp.model.FeedModel;
 import com.jascal.flora.net.bean.Feed;
 
 import java.util.List;
 
-public class RecommendPresenter extends BasePresenter implements RecommendContract.presenter {
-    private RecommendContract.view view;
+public class MainPresenter extends BasePresenter implements MainContract.presenter {
+    private MainContract.view view;
 
-    public RecommendPresenter(RecommendContract.view view) {
+    public MainPresenter(MainContract.view view) {
         this.view = view;
         this.view.setPresenter(this);
     }
