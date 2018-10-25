@@ -39,28 +39,11 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         Feed feed = mList.get(position);
 
         if (feed.getImage_count() > 0) {
-            Uri uri = Uri.parse(Config.BASE_IMAGE_PATH +
-                    feed.getImages().get(0).getUser_id() +
-                    Config.BASE_IMAGE_TAIL +
-                    feed.getImages().get(0).getImg_id() +
-                    ".jpg");
-            Log.d("fresco", uri.toString());
-
+            Uri uri = Uri.parse(Config.BASE_IMAGE_PATH + feed.getImages().get(0).getUser_id() +
+                    Config.BASE_IMAGE_TAIL + feed.getImages().get(0).getImg_id() + ".jpg");
             load(uri, holder.img, feed.getImages().get(0).getWidth(), feed.getImages().get(0).getHeight());
 
-//            ResizeOptions resizeOptions = new ResizeOptions(200, 600);
-//
-//            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-//                    .setResizeOptions(resizeOptions)
-//                    .build();
-//
-//            holder.img.setController(
-//                    Fresco.newDraweeControllerBuilder()
-//                            .setOldController(holder.img.getController())
-//                            .setImageRequest(request)
-//                            .build()
-//            );
-
+            Log.d("fresco", uri.toString());
         }
 
         holder.text.setText(feed.getContent());
