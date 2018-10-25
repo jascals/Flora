@@ -1,11 +1,9 @@
 package com.jascal.flora.mvp.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.jascal.flora.R;
@@ -25,8 +23,8 @@ public class MainActivity extends BaseActivity implements MainContract.view {
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
 
-    @BindView(R.id.progress)
-    ProgressBar progressBar;
+//    @BindView(R.id.progress)
+//    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +34,10 @@ public class MainActivity extends BaseActivity implements MainContract.view {
         Ophelia.bind(this);
         new MainPresenter(this);
 
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+//        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
         presenter.getShots(getApplicationContext());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -51,7 +51,7 @@ public class MainActivity extends BaseActivity implements MainContract.view {
 
     @Override
     public void update(List<Feed> feeds) {
-        progressBar.setVisibility(View.INVISIBLE);
+//        progressBar.setVisibility(View.INVISIBLE);
         Toast.makeText(getApplicationContext(), "feeds num is " + feeds.size(), Toast.LENGTH_SHORT).show();
 
         FeedAdapter feedAdapter = new FeedAdapter(feeds);
