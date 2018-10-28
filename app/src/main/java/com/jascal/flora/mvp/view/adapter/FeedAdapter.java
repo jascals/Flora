@@ -3,7 +3,6 @@ package com.jascal.flora.mvp.view.adapter;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -42,10 +41,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
             Uri uri = Uri.parse(Config.BASE_IMAGE_PATH + feed.getImages().get(0).getUser_id() +
                     Config.BASE_IMAGE_TAIL + feed.getImages().get(0).getImg_id() + ".jpg");
             load(uri, holder.img, feed.getImages().get(0).getWidth(), feed.getImages().get(0).getHeight());
-
-            Log.d("fresco", uri.toString());
         }
-
         holder.text.setText(feed.getContent());
     }
 
