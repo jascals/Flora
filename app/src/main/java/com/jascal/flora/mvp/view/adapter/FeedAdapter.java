@@ -26,6 +26,22 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         this.mList = mList;
     }
 
+    private void load(Uri uri, SimpleDraweeView draweeView, int width, int height) {
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                .setResizeOptions(new ResizeOptions(width, height))
+                .setProgressiveRenderingEnabled(true)
+                .setAutoRotateEnabled(true)
+                .build();
+
+        PipelineDraweeController controller =
+                (PipelineDraweeController) Fresco.newDraweeControllerBuilder()
+                        .setImageRequest(request)
+                        .setOldController(draweeView.getController())
+                        .setAutoPlayAnimations(true)
+                        .build();
+        draweeView.setController(controller);
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(parent.getContext(), R.layout.item_feed, null);
@@ -57,27 +73,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
 
         ViewHolder(View itemView) {
             super(itemView);
-//            cardView = (CardView) itemView;
+            cardView = (CardView) itemView;
             img = (SimpleDraweeView) itemView.findViewById(R.id.item_img);
             text = (TextView) itemView.findViewById(R.id.item_text);
         }
-    }
-
-
-    private void load(Uri uri, SimpleDraweeView draweeView, int width, int height) {
-        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-                .setResizeOptions(new ResizeOptions(width, height))
-                //缩放,在解码前修改内存中的图片大小, 配合Downsampling可以处理所有图片,否则只能处理jpg,
-                // 开启Downsampling:在初始化时设置.setDownsampleEnabled(true)
-                .setProgressiveRenderingEnabled(true)//支持图片渐进式加载
-                .setAutoRotateEnabled(true) //如果图片是侧着,可以自动旋转
-                .build();
-        PipelineDraweeController controller =
-                (PipelineDraweeController) Fresco.newDraweeControllerBuilder()
-                        .setImageRequest(request)
-                        .setOldController(draweeView.getController())
-                        .setAutoPlayAnimations(true) //自动播放gif动画
-                        .build();
-        draweeView.setController(controller);
     }
 }
