@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import com.jascal.flora.mvp.presenter.MainPresenter;
 import com.jascal.flora.mvp.view.adapter.FeedAdapter;
 import com.jascal.flora.net.bean.Feed;
 import com.jascal.ophelia_annotation.BindView;
+import com.jascal.ophelia_annotation.OnClick;
 import com.jascal.ophelia_api.Ophelia;
 
 import java.util.List;
@@ -38,10 +40,17 @@ public class MainActivity extends BaseActivity implements MainContract.view {
     @BindView(R.id.progress)
     ProgressBar progressBar;
 
+    @OnClick(R.id.back)
+    void openDrawer(View view) {
+        drawerLayout.openDrawer(navigationView);
+
+    }
+
     private void setNavItemListener() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                // TODO item event
                 item.setChecked(true);
                 return true;
             }
@@ -49,12 +58,23 @@ public class MainActivity extends BaseActivity implements MainContract.view {
     }
 
     private void setHeadViewClick() {
-        navigationView.getHeaderView(0).setOnClickListener(new View.OnClickListener() {
+        navigationView.getHeaderView(0).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                drawerLayout.closeDrawers();//关闭导航菜单
+                // TODO custom setting
             }
         });
+    }
+
+    private void initToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setNavItemListener();
+        setHeadViewClick();
+    }
+
+    private void initData() {
+        presenter.getShots(getApplicationContext());
     }
 
     @Override
@@ -65,19 +85,11 @@ public class MainActivity extends BaseActivity implements MainContract.view {
         Ophelia.bind(this);
         new MainPresenter(this);
 
-//        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        presenter.getShots(getApplicationContext());
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        setNavItemListener();
-        setHeadViewClick();
-
-        drawerLayout.openDrawer(navigationView);
+        initToolbar();
+        initData();
     }
 
     @Override
@@ -98,6 +110,4 @@ public class MainActivity extends BaseActivity implements MainContract.view {
     public void error(String message) {
         Toast.makeText(getApplicationContext(), "get shots error:" + message, Toast.LENGTH_LONG).show();
     }
-
-
 }
