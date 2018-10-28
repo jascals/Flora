@@ -19,6 +19,7 @@ import com.jascal.flora.mvp.MainContract;
 import com.jascal.flora.mvp.presenter.MainPresenter;
 import com.jascal.flora.mvp.view.adapter.FeedAdapter;
 import com.jascal.flora.net.bean.Feed;
+import com.jascal.flora.widget.SpaceItemDecoration;
 import com.jascal.ophelia_annotation.BindView;
 import com.jascal.ophelia_annotation.OnClick;
 import com.jascal.ophelia_api.Ophelia;
@@ -104,6 +105,7 @@ public class MainActivity extends BaseActivity implements MainContract.view {
 
         FeedAdapter feedAdapter = new FeedAdapter(feeds);
         recyclerView.setAdapter(feedAdapter);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(30));
     }
 
     @Override
