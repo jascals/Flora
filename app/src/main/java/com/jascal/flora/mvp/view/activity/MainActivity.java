@@ -1,6 +1,5 @@
 package com.jascal.flora.mvp.view.activity;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
