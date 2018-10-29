@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/colorPrimaryLight"
-    tools:context=".mvp.view.MainActivity">
+    tools:context=".mvp.view.activity.MainActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -20,6 +20,7 @@
             app:layout_scrollFlags="scroll|snap|enterAlways">
 
             <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
@@ -44,7 +45,7 @@
                         android:gravity="center"
                         app:drawable_height="28dp"
                         app:drawable_location="left"
-                        app:drawable_src="@mipmap/ic_back"
+                        app:drawable_src="@mipmap/ic_menu"
                         app:drawable_width="28dp" />
 
                     <com.jascal.flora.widget.DrawableTextView
@@ -63,9 +64,10 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:padding="3dp"
                         app:drawable_height="28dp"
                         app:drawable_location="right"
-                        app:drawable_src="@mipmap/ic_refresh"
+                        app:drawable_src="@mipmap/ic_github"
                         app:drawable_width="28dp" />
 
                 </LinearLayout>

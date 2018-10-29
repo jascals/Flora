@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.jascal.flora.utils.TypefaceLoader;
 
 public class FloraApplication extends Application {
 
@@ -11,6 +12,11 @@ public class FloraApplication extends Application {
     public void onCreate() {
         super.onCreate();
         initFresco();
+        initFonts();
+    }
+
+    private void initFonts() {
+        TypefaceLoader.setDefaultFont(this,"DEFAULT", "fonts/littlevi.ttf");
     }
 
     private void initFresco() {

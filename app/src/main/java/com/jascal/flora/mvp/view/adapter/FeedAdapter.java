@@ -58,7 +58,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
                     Config.BASE_IMAGE_TAIL + feed.getImages().get(0).getImg_id() + ".jpg");
             load(uri, holder.img, feed.getImages().get(0).getWidth(), feed.getImages().get(0).getHeight());
         }
-        holder.text.setText(feed.getContent());
+//        holder.text.setText(feed.getContent());
     }
 
     @Override
@@ -74,8 +74,8 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
         ViewHolder(View itemView) {
             super(itemView);
             cardView = (CardView) itemView;
-            img = (SimpleDraweeView) itemView.findViewById(R.id.item_img);
-            text = (TextView) itemView.findViewById(R.id.item_text);
+            img = itemView.findViewById(R.id.item_img);
+//            text = itemView.findViewById(R.id.item_text);
         }
     }
 }

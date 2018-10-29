@@ -1,5 +1,6 @@
-package com.jascal.flora.mvp.view;
+package com.jascal.flora.mvp.view.activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -19,6 +20,7 @@ import com.jascal.flora.mvp.MainContract;
 import com.jascal.flora.mvp.presenter.MainPresenter;
 import com.jascal.flora.mvp.view.adapter.FeedAdapter;
 import com.jascal.flora.net.bean.Feed;
+import com.jascal.flora.widget.DrawableTextView;
 import com.jascal.flora.widget.SpaceItemDecoration;
 import com.jascal.ophelia_annotation.BindView;
 import com.jascal.ophelia_annotation.OnClick;
@@ -40,6 +42,9 @@ public class MainActivity extends BaseActivity implements MainContract.view {
 
     @BindView(R.id.progress)
     ProgressBar progressBar;
+
+    @BindView(R.id.title)
+    DrawableTextView title;
 
     @OnClick(R.id.back)
     void openDrawer(View view) {
