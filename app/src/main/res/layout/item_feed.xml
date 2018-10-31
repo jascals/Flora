@@ -5,16 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="@color/colorPrimaryLight"
+    android:background="@drawable/recycler_item_selector"
     android:elevation="12dp"
     android:orientation="vertical"
     app:cardCornerRadius="12dp"
     tools:targetApi="lollipop">
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:orientation="vertical">-->
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/item_img"
@@ -23,19 +18,4 @@
         android:layout_gravity="top"
         android:scaleType="centerCrop" />
 
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="100dp">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/item_text"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:gravity="center"-->
-    <!--android:maxEms="25"-->
-    <!--android:maxLines="2"-->
-    <!--android:text="Hello World!" />-->
-
-    <!--</LinearLayout>-->
-    <!--</LinearLayout>-->
 </android.support.v7.widget.CardView>

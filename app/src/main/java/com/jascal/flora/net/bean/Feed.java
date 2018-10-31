@@ -1,8 +1,12 @@
 package com.jascal.flora.net.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Feed {
+public class Feed implements Parcelable {
     private int post_id;
     private String type;
     private String url;
@@ -23,10 +27,10 @@ public class Feed {
     private String recom_type;
     private String rqt_id;
     private boolean is_favorite;
-    private List<Image> images;
+    private List<Image> images = new ArrayList<>();
     private List<String> tags;
     private List<String> event_tags;
-    private List<Site> sites;
+    private List<Site> sites = new ArrayList<>();
 
     public int getPost_id() {
         return post_id;
@@ -249,4 +253,79 @@ public class Feed {
                 ", sites=" + sites +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.post_id);
+        dest.writeString(this.type);
+        dest.writeString(this.url);
+        dest.writeString(this.site_id);
+        dest.writeString(this.author_id);
+        dest.writeString(this.published_at);
+        dest.writeString(this.excerpt);
+        dest.writeInt(this.favorites);
+        dest.writeInt(this.comments);
+        dest.writeByte(this.delete ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.update ? (byte) 1 : (byte) 0);
+        dest.writeString(this.content);
+        dest.writeString(this.title);
+        dest.writeInt(this.image_count);
+        dest.writeString(this.data_type);
+        dest.writeString(this.created_at);
+        dest.writeParcelable(this.site, flags);
+        dest.writeString(this.recom_type);
+        dest.writeString(this.rqt_id);
+        dest.writeByte(this.is_favorite ? (byte) 1 : (byte) 0);
+        dest.writeTypedList(this.images);
+        dest.writeStringList(this.tags);
+        dest.writeStringList(this.event_tags);
+        dest.writeTypedList(this.sites);
+    }
+
+    public Feed() {
+    }
+
+    protected Feed(Parcel in) {
+        this.post_id = in.readInt();
+        this.type = in.readString();
+        this.url = in.readString();
+        this.site_id = in.readString();
+        this.author_id = in.readString();
+        this.published_at = in.readString();
+        this.excerpt = in.readString();
+        this.favorites = in.readInt();
+        this.comments = in.readInt();
+        this.delete = in.readByte() != 0;
+        this.update = in.readByte() != 0;
+        this.content = in.readString();
+        this.title = in.readString();
+        this.image_count = in.readInt();
+        this.data_type = in.readString();
+        this.created_at = in.readString();
+        this.site = in.readParcelable(Site.class.getClassLoader());
+        this.recom_type = in.readString();
+        this.rqt_id = in.readString();
+        this.is_favorite = in.readByte() != 0;
+        this.images = in.createTypedArrayList(Image.CREATOR);
+        this.tags = in.createStringArrayList();
+        this.event_tags = in.createStringArrayList();
+        this.sites = in.createTypedArrayList(Site.CREATOR);
+    }
+
+    public static final Parcelable.Creator<Feed> CREATOR = new Parcelable.Creator<Feed>() {
+        @Override
+        public Feed createFromParcel(Parcel source) {
+            return new Feed(source);
+        }
+
+        @Override
+        public Feed[] newArray(int size) {
+            return new Feed[size];
+        }
+    };
 }

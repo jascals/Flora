@@ -1,5 +1,6 @@
 package com.jascal.flora.mvp.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -7,7 +8,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
@@ -51,6 +54,60 @@ public class MainActivity extends BaseActivity implements MainContract.view {
 
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Ophelia.bind(this);
+        new MainPresenter(this);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        initToolbar();
+        initData();
+    }
+
+    @Override
+    public void setPresenter(MainContract.presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    @Override
+    public void update(final List<Feed> feeds) {
+        progressBar.setVisibility(View.INVISIBLE);
+        Toast.makeText(getApplicationContext(), "feeds num is " + feeds.size(), Toast.LENGTH_SHORT).show();
+
+        FeedAdapter feedAdapter = new FeedAdapter(feeds);
+        recyclerView.setAdapter(feedAdapter);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(30));
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+                return true;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+                Log.d("recyclerView", "touch");
+                View childView = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+                int position = recyclerView.getChildAdapterPosition(childView);
+                showImage(feeds.get(position));
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean b) {
+
+            }
+        });
+    }
+
+    @Override
+    public void error(String message) {
+        Toast.makeText(getApplicationContext(), "get shots error:" + message, Toast.LENGTH_LONG).show();
+    }
+
     private void setNavItemListener() {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -82,38 +139,10 @@ public class MainActivity extends BaseActivity implements MainContract.view {
         presenter.getShots(getApplicationContext());
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Ophelia.bind(this);
-        new MainPresenter(this);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        initToolbar();
-        initData();
-    }
-
-    @Override
-    public void setPresenter(MainContract.presenter presenter) {
-        this.presenter = presenter;
-    }
-
-    @Override
-    public void update(List<Feed> feeds) {
-        progressBar.setVisibility(View.INVISIBLE);
-        Toast.makeText(getApplicationContext(), "feeds num is " + feeds.size(), Toast.LENGTH_SHORT).show();
-
-        FeedAdapter feedAdapter = new FeedAdapter(feeds);
-        recyclerView.setAdapter(feedAdapter);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(30));
-    }
-
-    @Override
-    public void error(String message) {
-        Toast.makeText(getApplicationContext(), "get shots error:" + message, Toast.LENGTH_LONG).show();
+    private void showImage(Feed feed) {
+        Intent intent = new Intent();
+        intent.setClass(this, PhotoActivity.class);
+        intent.putExtra("feed", feed);
+        startActivity(intent);
     }
 }

@@ -1,8 +1,11 @@
 package com.jascal.flora.net.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Site {
+public class Site implements Parcelable {
     private String site_id;
     private String type;
     private String name;
@@ -15,7 +18,7 @@ public class Site {
     private int verified_type;
     private String verified_reason;
     private int verifications;
-    private List<?> verification_list;
+    private List<Verification> verification_list;
 
     public String getSite_id() {
         return site_id;
@@ -113,11 +116,11 @@ public class Site {
         this.verifications = verifications;
     }
 
-    public List<?> getVerification_list() {
+    public List<Verification> getVerification_list() {
         return verification_list;
     }
 
-    public void setVerification_list(List<?> verification_list) {
+    public void setVerification_list(List<Verification> verification_list) {
         this.verification_list = verification_list;
     }
 
@@ -139,4 +142,57 @@ public class Site {
                 ", verification_list=" + verification_list +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.site_id);
+        dest.writeString(this.type);
+        dest.writeString(this.name);
+        dest.writeString(this.domain);
+        dest.writeString(this.description);
+        dest.writeInt(this.followers);
+        dest.writeString(this.url);
+        dest.writeString(this.icon);
+        dest.writeByte(this.verified ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.verified_type);
+        dest.writeString(this.verified_reason);
+        dest.writeInt(this.verifications);
+        dest.writeTypedList(this.verification_list);
+    }
+
+    public Site() {
+    }
+
+    protected Site(Parcel in) {
+        this.site_id = in.readString();
+        this.type = in.readString();
+        this.name = in.readString();
+        this.domain = in.readString();
+        this.description = in.readString();
+        this.followers = in.readInt();
+        this.url = in.readString();
+        this.icon = in.readString();
+        this.verified = in.readByte() != 0;
+        this.verified_type = in.readInt();
+        this.verified_reason = in.readString();
+        this.verifications = in.readInt();
+        this.verification_list = in.createTypedArrayList(Verification.CREATOR);
+    }
+
+    public static final Parcelable.Creator<Site> CREATOR = new Parcelable.Creator<Site>() {
+        @Override
+        public Site createFromParcel(Parcel source) {
+            return new Site(source);
+        }
+
+        @Override
+        public Site[] newArray(int size) {
+            return new Site[size];
+        }
+    };
 }

@@ -1,8 +1,11 @@
 package com.jascal.flora.net.bean;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
-public class Response {
+public class Response implements Parcelable {
     private boolean is_history;
     private int counts;
     private String message;
@@ -69,4 +72,43 @@ public class Response {
                 ", feedList=" + feedList +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeByte(this.is_history ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.counts);
+        dest.writeString(this.message);
+        dest.writeByte(this.more ? (byte) 1 : (byte) 0);
+        dest.writeString(this.result);
+        dest.writeTypedList(this.feedList);
+    }
+
+    public Response() {
+    }
+
+    protected Response(Parcel in) {
+        this.is_history = in.readByte() != 0;
+        this.counts = in.readInt();
+        this.message = in.readString();
+        this.more = in.readByte() != 0;
+        this.result = in.readString();
+        this.feedList = in.createTypedArrayList(Feed.CREATOR);
+    }
+
+    public static final Parcelable.Creator<Response> CREATOR = new Parcelable.Creator<Response>() {
+        @Override
+        public Response createFromParcel(Parcel source) {
+            return new Response(source);
+        }
+
+        @Override
+        public Response[] newArray(int size) {
+            return new Response[size];
+        }
+    };
 }
