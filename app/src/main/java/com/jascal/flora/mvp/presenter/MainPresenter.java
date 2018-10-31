@@ -10,10 +10,10 @@ import com.jascal.flora.net.bean.Feed;
 
 import java.util.List;
 
-public class MainPresenter extends BasePresenter implements MainContract.presenter {
-    private MainContract.view view;
+public class MainPresenter extends BasePresenter implements MainContract.Presenter {
+    private MainContract.View view;
 
-    public MainPresenter(MainContract.view view) {
+    public MainPresenter(MainContract.View view) {
         this.view = view;
         this.view.setPresenter(this);
     }

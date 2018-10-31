@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface MainContract {
 
-    interface view {
-        void setPresenter(MainContract.presenter presenter);
+    interface View {
+        void setPresenter(MainContract.Presenter presenter);
 
         void update(List<Feed> feeds);
 
@@ -17,7 +17,7 @@ public interface MainContract {
 
     }
 
-    interface presenter {
+    interface Presenter {
         void getShots(Context context);
     }
 

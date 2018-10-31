@@ -30,8 +30,8 @@ import com.jascal.ophelia_api.Ophelia;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements MainContract.view, RecyclerListener.OnItemClickListener {
-    private MainContract.presenter presenter;
+public class MainActivity extends BaseActivity implements MainContract.View, RecyclerListener.OnItemClickListener {
+    private MainContract.Presenter presenter;
     private List<Feed> feeds;
 
     @BindView(R.id.drawer_layout)
@@ -71,7 +71,7 @@ public class MainActivity extends BaseActivity implements MainContract.view, Rec
     }
 
     @Override
-    public void setPresenter(MainContract.presenter presenter) {
+    public void setPresenter(MainContract.Presenter presenter) {
         this.presenter = presenter;
     }
 
