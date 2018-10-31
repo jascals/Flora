@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ProgressBar;
@@ -21,6 +20,7 @@ import com.jascal.flora.base.BaseActivity;
 import com.jascal.flora.mvp.MainContract;
 import com.jascal.flora.mvp.presenter.MainPresenter;
 import com.jascal.flora.mvp.view.adapter.FeedAdapter;
+import com.jascal.flora.mvp.view.listener.RecyclerListener;
 import com.jascal.flora.net.bean.Feed;
 import com.jascal.flora.widget.DrawableTextView;
 import com.jascal.flora.widget.SpaceItemDecoration;
@@ -30,8 +30,9 @@ import com.jascal.ophelia_api.Ophelia;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements MainContract.view {
+public class MainActivity extends BaseActivity implements MainContract.view, RecyclerListener.OnItemClickListener {
     private MainContract.presenter presenter;
+    private List<Feed> feeds;
 
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
@@ -76,36 +77,30 @@ public class MainActivity extends BaseActivity implements MainContract.view {
 
     @Override
     public void update(final List<Feed> feeds) {
+        this.feeds = feeds;
         progressBar.setVisibility(View.INVISIBLE);
         Toast.makeText(getApplicationContext(), "feeds num is " + feeds.size(), Toast.LENGTH_SHORT).show();
 
         FeedAdapter feedAdapter = new FeedAdapter(feeds);
         recyclerView.setAdapter(feedAdapter);
         recyclerView.addItemDecoration(new SpaceItemDecoration(30));
-        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-                return true;
-            }
-
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-                Log.d("recyclerView", "touch");
-                View childView = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-                int position = recyclerView.getChildAdapterPosition(childView);
-                showImage(feeds.get(position));
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean b) {
-
-            }
-        });
+        recyclerView.addOnItemTouchListener(new RecyclerListener(getApplicationContext(), recyclerView, this));
     }
 
     @Override
     public void error(String message) {
         Toast.makeText(getApplicationContext(), "get shots error:" + message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onItemClick(View view, int position) {
+        showImage(feeds.get(position));
+    }
+
+    @Override
+    public void onItemLongClick(View view, int position) {
+        // TODO
+        Log.d("recyclerView", "long click");
     }
 
     private void setNavItemListener() {
