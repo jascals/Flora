@@ -12,6 +12,8 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
 import com.jascal.flora.mvp.PhotoContract;
+import com.jascal.flora.mvp.binding.DaggerPhotoComponent;
+import com.jascal.flora.mvp.binding.PhotoModule;
 import com.jascal.flora.mvp.presenter.PhotoPresenter;
 import com.jascal.flora.net.Config;
 import com.jascal.flora.net.bean.Feed;
@@ -48,6 +50,8 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View {
 
         initToolbar();
         initData();
+
+        presenter = DaggerPhotoComponent.builder().photoModule(new PhotoModule(this)).build().getPresenter();
     }
 
     private void initData() {

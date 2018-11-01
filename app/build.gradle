@@ -34,13 +34,17 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
     implementation 'com.github.MashirosBaumkuchen.Ophelia:ophelia-api:v1.0'
     implementation 'com.github.MashirosBaumkuchen.Ophelia:ophelia-annotation:v1.0'
     annotationProcessor 'com.github.MashirosBaumkuchen.Ophelia:ophelia-compiler:v1.0'
 
-    implementation 'com.facebook.fresco:fresco:1.8.0'
+    implementation 'com.facebook.fresco:fresco:1.8.1'
+
+    implementation "com.google.dagger:dagger:2.4"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.4"
+    implementation 'org.glassfish:javax.annotation:10.0-b28'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
