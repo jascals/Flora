@@ -1,6 +1,7 @@
 package com.jascal.flora.mvp.view.activity;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
+import com.jascal.flora.databinding.ActivityPhotoBinding;
 import com.jascal.flora.mvp.PhotoContract;
 import com.jascal.flora.mvp.presenter.PhotoPresenter;
 import com.jascal.flora.net.Config;
@@ -21,12 +23,7 @@ import com.jascal.ophelia_api.Ophelia;
 
 public class PhotoActivity extends BaseActivity implements PhotoContract.View {
     private PhotoContract.Presenter presenter;
-
-    @BindView(R.id.photo)
-    SimpleDraweeView photo;
-
-    @BindView(R.id.excerpt)
-    TextView excerpt;
+    private ActivityPhotoBinding binding;
 
     @OnClick(R.id.back)
     void back(View view) {
@@ -46,6 +43,8 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View {
         Ophelia.bind(this);
         new PhotoPresenter(this);
 
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_photo);
+
         initToolbar();
         initData();
     }
@@ -57,8 +56,8 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View {
         Uri uri = Uri.parse(Config.BASE_IMAGE_PATH + feed.getImages().get(0).getUser_id() +
                 Config.BASE_IMAGE_TAIL + feed.getImages().get(0).getImg_id() + ".jpg");
 
-        photo.setImageURI(uri);
-        excerpt.setText(feed.getExcerpt());
+        binding.setFeed(feed);
+        binding.photo.setImageURI(uri);
     }
 
     private void initToolbar() {
