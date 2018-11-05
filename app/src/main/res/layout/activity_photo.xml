@@ -106,6 +106,17 @@
                     android:textColor="@color/colorPrimaryText"
                     android:textSize="15sp" />
 
+                <Button
+                    android:id="@+id/convertbt"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="convert"/>
+
+                <ImageView
+                    android:id="@+id/result"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp" />
+
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
