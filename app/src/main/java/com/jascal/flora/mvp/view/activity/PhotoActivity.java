@@ -19,6 +19,7 @@ import com.jascal.flora.mvp.PhotoContract;
 import com.jascal.flora.mvp.presenter.PhotoPresenter;
 import com.jascal.flora.net.Config;
 import com.jascal.flora.net.bean.Feed;
+import com.jascal.flora.utils.ThemeUtils;
 import com.jascal.ophelia_annotation.OnClick;
 import com.jascal.ophelia_api.Ophelia;
 
@@ -40,6 +41,7 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        ThemeUtils.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
         Ophelia.bind(this);

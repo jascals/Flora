@@ -17,11 +17,14 @@ import android.widget.Toast;
 
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
+import com.jascal.flora.cache.Config;
+import com.jascal.flora.cache.sp.SpHelper;
 import com.jascal.flora.mvp.MainContract;
 import com.jascal.flora.mvp.presenter.MainPresenter;
 import com.jascal.flora.mvp.view.adapter.FeedAdapter;
 import com.jascal.flora.mvp.view.listener.RecyclerListener;
 import com.jascal.flora.net.bean.Feed;
+import com.jascal.flora.utils.ThemeUtils;
 import com.jascal.flora.widget.DrawableTextView;
 import com.jascal.flora.widget.SpaceItemDecoration;
 import com.jascal.ophelia_annotation.BindView;
@@ -57,15 +60,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeUtils.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Ophelia.bind(this);
         new MainPresenter(this);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
         initToolbar();
         initData();
     }
@@ -109,6 +109,16 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 // TODO item event
                 item.setChecked(true);
+                switch (item.getItemId()) {
+                    case R.id.darkness:
+                        SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, false);
+                        ThemeUtils.reCreate(MainActivity.this);
+                        break;
+                    case R.id.lightness:
+                        SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, true);
+                        ThemeUtils.reCreate(MainActivity.this);
+                        break;
+                }
                 return true;
             }
         });
@@ -131,6 +141,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
     }
 
     private void initData() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
         presenter.getShots(getApplicationContext());
     }
 

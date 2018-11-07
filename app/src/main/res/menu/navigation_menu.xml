@@ -22,10 +22,12 @@
     <item android:title="Setting">
         <menu>
             <item
+                android:id="@+id/lightness"
                 android:icon="@mipmap/ic_lightness"
                 android:orderInCategory="100"
                 android:title="lightness" />
             <item
+                android:id="@+id/darkness"
                 android:icon="@mipmap/ic_darkness"
                 android:title="darkness" />
         </menu>
