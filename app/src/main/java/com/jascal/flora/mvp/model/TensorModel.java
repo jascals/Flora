@@ -84,7 +84,7 @@ public class TensorModel implements BaseModel {
     }
 
 
-    private int desiredSize = 256;
+    private int desiredSize = 512;
     private final float[] styleVals = new float[NUM_STYLES];
     private int[] intValues = new int[desiredSize * desiredSize];
     private float[] floatValues = new float[desiredSize * desiredSize * 3];
@@ -100,7 +100,7 @@ public class TensorModel implements BaseModel {
             floatValues[i * 3 + 2] = (val & 0xFF) / 255.0f;
         }
         for (int i = 0; i < NUM_STYLES; ++i) {
-            styleVals[i] = 0.1f / NUM_STYLES;
+            styleVals[i] = 0.1f * i / NUM_STYLES;
         }
 
         // Copy the input data into TensorFlow.

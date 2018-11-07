@@ -7,7 +7,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.jascal.flora.R;
@@ -70,6 +72,10 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View {
 
     @Override
     public void setPhoto(Bitmap bitmap) {
+//        ViewGroup.LayoutParams layoutParams = binding.result.getLayoutParams();
+//        layoutParams.width = bitmap.getWidth();
+//        layoutParams.height = bitmap.getHeight();
+//        binding.result.setLayoutParams(layoutParams);
         binding.result.setImageBitmap(bitmap);
     }
 

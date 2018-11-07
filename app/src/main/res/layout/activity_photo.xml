@@ -110,12 +110,14 @@
                     android:id="@+id/convertbt"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
-                    android:text="convert"/>
+                    android:text="convert" />
 
                 <ImageView
                     android:id="@+id/result"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp" />
+                    android:layout_height="400dp"
+                    android:layout_margin="16dp"
+                    android:scaleType="centerCrop" />
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
