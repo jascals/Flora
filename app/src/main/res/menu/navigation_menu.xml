@@ -22,11 +22,12 @@
     <item android:title="Setting">
         <menu>
             <item
-                android:icon="@mipmap/ic_launcher"
-                android:title="Speak" />
+                android:icon="@mipmap/ic_lightness"
+                android:orderInCategory="100"
+                android:title="lightness" />
             <item
-                android:icon="@mipmap/ic_launcher"
-                android:title="Quiet" />
+                android:icon="@mipmap/ic_darkness"
+                android:title="darkness" />
         </menu>
     </item>
 </menu>
