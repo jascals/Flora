@@ -68,6 +68,10 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
         new MainPresenter(this);
         initToolbar();
         initData();
+
+        if (getIntent().getBooleanExtra("navigation", false)) {
+            drawerLayout.openDrawer(navigationView);
+        }
     }
 
     @Override
@@ -109,14 +113,27 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 // TODO item event
                 item.setChecked(true);
+                Intent intent;
                 switch (item.getItemId()) {
                     case R.id.darkness:
                         SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, false);
-                        ThemeUtils.reCreate(MainActivity.this);
+                        intent = new Intent(MainActivity.this, MainActivity.class);
+                        intent.putExtra("navigation", true);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
+                        finish();
                         break;
                     case R.id.lightness:
                         SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, true);
-                        ThemeUtils.reCreate(MainActivity.this);
+                        intent = new Intent(MainActivity.this, MainActivity.class);
+                        intent.putExtra("navigation", true);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
+                        finish();
                         break;
                 }
                 return true;

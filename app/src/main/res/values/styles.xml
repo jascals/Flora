@@ -1,20 +1,26 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:typeface">serif</item>
+        <item name="android:windowAnimationStyle">@style/windowAnim</item>
+    </style>
+
+    <style name="lightness" parent="AppTheme">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="android:typeface">serif</item>
     </style>
 
-    <style name="lightness" parent="AppTheme" />
-
-    <style name="darkness" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="darkness" parent="AppTheme">
         <item name="colorPrimary">@color/darkPrimary</item>
         <item name="colorPrimaryDark">@color/darkPrimaryDark</item>
         <item name="colorAccent">@color/darkAccent</item>
+    </style>
 
-        <item name="android:typeface">serif</item>
+    <style name="windowAnim" parent="android:style/Animation.Activity">
+        <item name="android:activityOpenExitAnimation">@anim/activity_out</item>
+        <item name="android:activityOpenEnterAnimation">@anim/activity_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_in</item>
     </style>
 </resources>
