@@ -33,7 +33,8 @@ import com.jascal.ophelia_api.Ophelia;
 
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements MainContract.View, RecyclerListener.OnItemClickListener {
+public class MainActivity extends BaseActivity implements MainContract.View, RecyclerListener.OnItemClickListener,
+        NavigationView.OnNavigationItemSelectedListener{
     private MainContract.Presenter presenter;
     private List<Feed> feeds;
 
@@ -69,6 +70,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
         initToolbar();
         initData();
 
+        // getInstanceState if necessary
         if (getIntent().getBooleanExtra("navigation", false)) {
             drawerLayout.openDrawer(navigationView);
         }
@@ -107,54 +109,16 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
         Log.d("recyclerView", "long click");
     }
 
-    private void setNavItemListener() {
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                // TODO item event
-                item.setChecked(true);
-                Intent intent;
-                switch (item.getItemId()) {
-                    case R.id.darkness:
-                        SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, false);
-                        intent = new Intent(MainActivity.this, MainActivity.class);
-                        intent.putExtra("navigation", true);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
-                        finish();
-                        break;
-                    case R.id.lightness:
-                        SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, true);
-                        intent = new Intent(MainActivity.this, MainActivity.class);
-                        intent.putExtra("navigation", true);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
-                        finish();
-                        break;
-                }
-                return true;
-            }
-        });
-    }
-
-    private void setHeadViewClick() {
+    private void initToolbar() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        navigationView.setNavigationItemSelectedListener(this);
         navigationView.getHeaderView(0).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO custom setting
             }
         });
-    }
-
-    private void initToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        setNavItemListener();
-        setHeadViewClick();
     }
 
     private void initData() {
@@ -168,5 +132,34 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
         intent.setClass(this, PhotoActivity.class);
         intent.putExtra("feed", feed);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        item.setChecked(true);
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.darkness:
+                SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, false);
+                intent = new Intent(MainActivity.this, MainActivity.class);
+                intent.putExtra("navigation", true);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
+                finish();
+                break;
+            case R.id.lightness:
+                SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, true);
+                intent = new Intent(MainActivity.this, MainActivity.class);
+                intent.putExtra("navigation", true);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
+                finish();
+                break;
+        }
+        return true;
     }
 }

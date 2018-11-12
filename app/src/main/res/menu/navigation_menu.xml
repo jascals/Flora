@@ -2,34 +2,34 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@mipmap/ic_launcher"
-            android:title="Home" />
+            android:id="@+id/home"
+            android:icon="@mipmap/ic_home"
+            android:title="@string/navigation_home" />
         <item
-            android:id="@+id/nav_messages"
-            android:icon="@mipmap/ic_launcher"
-            android:title="Media" />
+            android:id="@+id/profile"
+            android:icon="@mipmap/ic_profile"
+            android:title="@string/navigation_profile" />
         <item
-            android:id="@+id/nav_friends"
-            android:icon="@mipmap/ic_launcher"
-            android:title="Location" />
+            android:id="@+id/aboutme"
+            android:icon="@mipmap/ic_about"
+            android:title="@string/navigation_about" />
         <item
-            android:id="@+id/nav_discussion"
-            android:icon="@mipmap/ic_launcher"
-            android:title="Favorite" />
+            android:id="@+id/setting"
+            android:icon="@mipmap/ic_setting"
+            android:title="@string/navigation_setting" />
     </group>
 
-    <item android:title="Setting">
+    <item android:title="@string/navigation_theme">
         <menu>
             <item
                 android:id="@+id/lightness"
                 android:icon="@mipmap/ic_lightness"
                 android:orderInCategory="100"
-                android:title="lightness" />
+                android:title="@string/navigation_lightness" />
             <item
                 android:id="@+id/darkness"
                 android:icon="@mipmap/ic_darkness"
-                android:title="darkness" />
+                android:title="@string/navigation_darkness" />
         </menu>
     </item>
 </menu>

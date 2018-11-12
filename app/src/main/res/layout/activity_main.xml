@@ -55,7 +55,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/app_name"
-                        android:textColor="?attr/colorPrimaryText_"
+                        android:textColor="?attr/colorText_"
                         android:textSize="18sp" />
 
                     <com.jascal.flora.widget.DrawableTextView
