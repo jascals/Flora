@@ -13,7 +13,7 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryLight">
+        android:background="?attr/colorPrimaryLight_">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:title=""
-                app:titleTextColor="#ffffff">
+                app:titleTextColor="?attr/colorPrimaryText_">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -57,7 +57,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/photo"
-                        android:textColor="#ffffff"
+                        android:textColor="?attr/colorPrimaryText_"
                         android:textSize="18sp" />
 
                     <com.jascal.flora.widget.DrawableTextView
@@ -103,7 +103,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:text="@{feed.excerpt}"
-                    android:textColor="@color/colorPrimaryText"
+                    android:textColor="?attr/colorPrimaryText_"
                     android:textSize="15sp" />
 
                 <Button

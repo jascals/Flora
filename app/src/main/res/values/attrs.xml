@@ -11,4 +11,10 @@
             <enum name="bottom" value="4" />
         </attr>
     </declare-styleable>
+
+    <attr name="colorPrimaryLight_" format="color|reference" />
+    <attr name="colorPrimaryText_" format="color|reference" />
+    <attr name="colorSecondaryText_" format="color|reference" />
+    <attr name="colorDivider_" format="color|reference" />
+    <attr name="colorText_" format="color|reference" />
 </resources>

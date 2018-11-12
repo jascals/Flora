@@ -9,12 +9,22 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryLight_">@color/colorPrimaryLight</item>
+        <item name="colorPrimaryText_">@color/colorPrimaryText</item>
+        <item name="colorSecondaryText_">@color/colorSecondaryText</item>
+        <item name="colorDivider_">@color/colorDivider</item>
+        <item name="colorText_">@color/colorText</item>
     </style>
 
     <style name="darkness" parent="AppTheme">
         <item name="colorPrimary">@color/darkPrimary</item>
         <item name="colorPrimaryDark">@color/darkPrimaryDark</item>
         <item name="colorAccent">@color/darkAccent</item>
+        <item name="colorPrimaryLight_">@color/darkPrimaryLight</item>
+        <item name="colorPrimaryText_">@color/darkPrimaryText</item>
+        <item name="colorSecondaryText_">@color/darkSecondaryText</item>
+        <item name="colorDivider_">@color/darkDivider</item>
+        <item name="colorText_">@color/darkText</item>
     </style>
 
     <style name="windowAnim" parent="android:style/Animation.Activity">

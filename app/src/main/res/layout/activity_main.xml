@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimaryLight"
+    android:background="?attr/colorPrimaryLight_"
     tools:context=".mvp.view.activity.MainActivity">
 
     <android.support.design.widget.CoordinatorLayout
@@ -29,7 +29,7 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:title=""
-                app:titleTextColor="#ffffff">
+                app:titleTextColor="?attr/colorPrimaryText_">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@string/app_name"
-                        android:textColor="#ffffff"
+                        android:textColor="?attr/colorPrimaryText_"
                         android:textSize="18sp" />
 
                     <com.jascal.flora.widget.DrawableTextView
