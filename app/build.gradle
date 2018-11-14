@@ -44,6 +44,7 @@ dependencies {
     annotationProcessor 'com.github.MashirosBaumkuchen.Ophelia:ophelia-compiler:v1.0'
 
     implementation 'com.facebook.fresco:fresco:1.8.1'
+    implementation 'com.facebook.rebound:rebound:0.3.8'
 
     implementation 'org.tensorflow:tensorflow-android:+'
 
