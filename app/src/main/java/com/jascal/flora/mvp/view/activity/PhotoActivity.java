@@ -74,11 +74,14 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View {
 
     @Override
     public void setPhoto(Bitmap bitmap) {
-//        ViewGroup.LayoutParams layoutParams = binding.result.getLayoutParams();
-//        layoutParams.width = bitmap.getWidth();
-//        layoutParams.height = bitmap.getHeight();
-//        binding.result.setLayoutParams(layoutParams);
         binding.result.setImageBitmap(bitmap);
+    }
+
+    public static void start(BaseActivity activity, Feed feed){
+        Intent intent = new Intent();
+        intent.setClass(activity, PhotoActivity.class);
+        intent.putExtra("feed", feed);
+        activity.startActivity(intent);
     }
 
     @Override

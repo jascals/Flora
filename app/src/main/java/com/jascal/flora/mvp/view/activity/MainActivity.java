@@ -34,7 +34,7 @@ import com.jascal.ophelia_api.Ophelia;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements MainContract.View, RecyclerListener.OnItemClickListener,
-        NavigationView.OnNavigationItemSelectedListener{
+        NavigationView.OnNavigationItemSelectedListener {
     private MainContract.Presenter presenter;
     private List<Feed> feeds;
 
@@ -128,38 +128,41 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
     }
 
     private void showImage(Feed feed) {
-        Intent intent = new Intent();
-        intent.setClass(this, PhotoActivity.class);
-        intent.putExtra("feed", feed);
-        startActivity(intent);
+        PhotoActivity.start(this, feed);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         item.setChecked(true);
-        Intent intent;
         switch (item.getItemId()) {
             case R.id.darkness:
                 SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, false);
-                intent = new Intent(MainActivity.this, MainActivity.class);
-                intent.putExtra("navigation", true);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
-                finish();
+                MainActivity.reStart(this);
                 break;
             case R.id.lightness:
                 SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, true);
-                intent = new Intent(MainActivity.this, MainActivity.class);
-                intent.putExtra("navigation", true);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
-                finish();
+                MainActivity.reStart(this);
+                break;
+            case R.id.profile:
+                ProfileActivity.start(this);
+                break;
+            case R.id.aboutme:
+                AboutActivity.start(this);
+                break;
+            case R.id.setting:
+                SettingActivity.start(this);
                 break;
         }
         return true;
+    }
+
+    public static void reStart(MainActivity activity) {
+        Intent intent = new Intent(activity, MainActivity.class);
+        intent.putExtra("navigation", true);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
+        activity.finish();
     }
 }
