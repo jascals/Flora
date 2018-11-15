@@ -8,6 +8,10 @@
             name="feed"
             type="com.jascal.flora.net.bean.Feed" />
 
+        <variable
+            name="site"
+            type="com.jascal.flora.net.bean.Site" />
+
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -94,17 +98,41 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp" />
 
-                <TextView
-                    android:id="@+id/excerpt"
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@{feed.excerpt}"
-                    android:textColor="?attr/colorPrimaryText_"
-                    android:textSize="15sp" />
+                    android:layout_height="160dp">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/icon"
+                        android:layout_width="41dp"
+                        android:layout_height="41dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        app:roundAsCircle="true" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/icon"
+                        android:layout_marginStart="8dp"
+                        android:layout_toEndOf="@+id/icon"
+                        android:text="@{site.name}"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@id/icon"
+                        android:layout_marginStart="8dp"
+                        android:layout_toEndOf="@+id/icon"
+                        android:text="@{feed.created_at}"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
 
                 <Button
                     android:id="@+id/convertbt"

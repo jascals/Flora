@@ -42,7 +42,10 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View, V
         uri = Uri.parse(Config.BASE_IMAGE_PATH + feed.getImages().get(0).getUser_id() +
                 Config.BASE_IMAGE_TAIL + feed.getImages().get(0).getImg_id() + ".jpg");
         binding.setFeed(feed);
+        binding.setSite(feed.getSite());
+
         binding.photo.setImageURI(uri);
+        binding.icon.setImageURI(Uri.parse(feed.getSite().getIcon()));
         binding.convertbt.setOnClickListener(this);
         binding.back.setOnClickListener(this);
         binding.share.setOnClickListener(this);

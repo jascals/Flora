@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tool="http://schemas.android.com/tools">
-    <!--<dimen name="navigation_icon_size">48dp</dimen>-->
     <dimen name="design_navigation_icon_size" tool:override="true">20dp</dimen>
-    <dimen name="drag_square_interval" >2dp</dimen>
+    <dimen name="drag_square_interval">2dp</dimen>
+
+    <dimen name="main_interval_v1">5dp</dimen>
+    <dimen name="main_interval_v2">10dp</dimen>
+    <dimen name="main_interval_v3">15dp</dimen>
 </resources>
