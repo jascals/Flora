@@ -7,9 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.jascal.flora.R;
@@ -20,31 +18,17 @@ import com.jascal.flora.mvp.presenter.PhotoPresenter;
 import com.jascal.flora.net.Config;
 import com.jascal.flora.net.bean.Feed;
 import com.jascal.flora.utils.ThemeUtils;
-import com.jascal.ophelia_annotation.OnClick;
-import com.jascal.ophelia_api.Ophelia;
 
-public class PhotoActivity extends BaseActivity implements PhotoContract.View {
+public class PhotoActivity extends BaseActivity implements PhotoContract.View, View.OnClickListener {
     private PhotoContract.Presenter presenter;
     private ActivityPhotoBinding binding;
-    private Feed feed;
     private Uri uri;
-
-    @OnClick(R.id.back)
-    void back(View view) {
-        this.finish();
-    }
-
-    @OnClick(R.id.share)
-    void share(View view) {
-        // TODO
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         ThemeUtils.setTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
-        Ophelia.bind(this);
         new PhotoPresenter(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_photo);
@@ -54,17 +38,14 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View {
 
     private void initData() {
         Intent intent = getIntent();
-        feed = intent.getParcelableExtra("feed");
+        Feed feed = intent.getParcelableExtra("feed");
         uri = Uri.parse(Config.BASE_IMAGE_PATH + feed.getImages().get(0).getUser_id() +
                 Config.BASE_IMAGE_TAIL + feed.getImages().get(0).getImg_id() + ".jpg");
         binding.setFeed(feed);
         binding.photo.setImageURI(uri);
-        binding.convertbt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.convert(uri, PhotoActivity.this.getApplicationContext(), PhotoPresenter.DRAK_MODEL);
-            }
-        });
+        binding.convertbt.setOnClickListener(this);
+        binding.back.setOnClickListener(this);
+        binding.share.setOnClickListener(this);
     }
 
     private void initToolbar() {
@@ -77,7 +58,7 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View {
         binding.result.setImageBitmap(bitmap);
     }
 
-    public static void start(BaseActivity activity, Feed feed){
+    public static void start(BaseActivity activity, Feed feed) {
         Intent intent = new Intent();
         intent.setClass(activity, PhotoActivity.class);
         intent.putExtra("feed", feed);
@@ -92,5 +73,20 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View {
     @Override
     public void setPresenter(PhotoContract.Presenter presenter) {
         this.presenter = presenter;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.back:
+                this.finish();
+                break;
+            case R.id.share:
+                //TODO
+                break;
+            case R.id.convertbt:
+                presenter.convert(uri, PhotoActivity.this.getApplicationContext(), PhotoPresenter.DRAK_MODEL);
+                break;
+        }
     }
 }
