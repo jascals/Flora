@@ -59,7 +59,7 @@
                         android:textSize="18sp" />
 
                     <com.jascal.flora.widget.DrawableTextView
-                        android:id="@+id/refresh"
+                        android:id="@+id/github"
                         android:layout_width="28dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

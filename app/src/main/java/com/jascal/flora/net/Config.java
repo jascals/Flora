@@ -2,6 +2,7 @@ package com.jascal.flora.net;
 
 
 public class Config {
+    public static final String GITHUB = "https://github.com/MashirosBaumkuchen/Flora";
     public static final String BASE_URL = "https://api.tuchong.com/";
 
     public static final String BASE_IMAGE_PATH = "https://photo.tuchong.com/";

@@ -1,6 +1,7 @@
 package com.jascal.flora.mvp.view.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -56,7 +57,14 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
     @OnClick(R.id.back)
     void openDrawer(View view) {
         drawerLayout.openDrawer(navigationView);
+    }
 
+    @OnClick(R.id.github)
+    void openGithub(View view){
+        Intent intent = new Intent();
+        intent.setData(Uri.parse(com.jascal.flora.net.Config.GITHUB));
+        intent.setAction(Intent.ACTION_VIEW);
+        this.startActivity(intent);
     }
 
     @Override
