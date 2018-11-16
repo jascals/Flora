@@ -1,12 +1,16 @@
 package com.jascal.flora.mvp.view.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,6 +38,25 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View, V
         binding = DataBindingUtil.setContentView(this, R.layout.activity_photo);
         initToolbar();
         initData();
+
+        String[] PERMISSIONS = {
+                "android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE"};
+        int permission = ContextCompat.checkSelfPermission(this,
+                "android.permission.WRITE_EXTERNAL_STORAGE");
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, PERMISSIONS, 1);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode != 1) return;
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // Permission Granted TODO
+        } else {
+            // Permission Denied TODO
+        }
     }
 
     private void initData() {
@@ -47,6 +70,7 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View, V
         binding.photo.setImageURI(uri);
         binding.icon.setImageURI(Uri.parse(feed.getSite().getIcon()));
         binding.convertbt.setOnClickListener(this);
+        binding.reset.setOnClickListener(this);
         binding.back.setOnClickListener(this);
         binding.share.setOnClickListener(this);
     }
@@ -57,8 +81,14 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View, V
     }
 
     @Override
-    public void setPhoto(Bitmap bitmap) {
-        binding.result.setImageBitmap(bitmap);
+    public void setPhoto(Uri uri) {
+        Log.d("photo uri", uri.toString());
+        binding.photo.setImageURI(uri);
+    }
+
+    public void resetPhoto() {
+        Log.d("photo uri", uri.toString());
+        binding.photo.setImageURI(uri);
     }
 
     public static void start(BaseActivity activity, Feed feed) {
@@ -89,6 +119,9 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View, V
                 break;
             case R.id.convertbt:
                 presenter.convert(uri, PhotoActivity.this.getApplicationContext(), PhotoPresenter.DRAK_MODEL);
+                break;
+            case R.id.reset:
+                resetPhoto();
                 break;
         }
     }

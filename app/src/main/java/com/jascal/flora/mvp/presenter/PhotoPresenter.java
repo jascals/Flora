@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 
 import com.jascal.flora.base.BasePresenter;
+import com.jascal.flora.cache.file.StorageHelper;
 import com.jascal.flora.mvp.PhotoContract;
 import com.jascal.flora.mvp.model.TensorModel;
 
@@ -19,14 +20,14 @@ public class PhotoPresenter extends BasePresenter implements PhotoContract.Prese
     }
 
     @Override
-    public void convert(Uri uri, Context context, int model) {
+    public void convert(Uri uri, final Context context, int model) {
         switch (model) {
             case DRAK_MODEL:
                 TensorModel tensorModel = new TensorModel(context);
                 tensorModel.setCallback(new TensorModel.Callback() {
                     @Override
                     public void onSuccess(Bitmap result) {
-                        view.setPhoto(result);
+                        view.setPhoto(StorageHelper.saveBitmap(context, result, "flora_result.jpg"));
                     }
 
                     @Override

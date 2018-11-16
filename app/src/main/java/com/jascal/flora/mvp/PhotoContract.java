@@ -1,7 +1,6 @@
 package com.jascal.flora.mvp;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.net.Uri;
 
 public interface PhotoContract {
@@ -9,7 +8,7 @@ public interface PhotoContract {
     interface View {
         void setPresenter(PhotoContract.Presenter presenter);
 
-        void setPhoto(Bitmap bitmap);
+        void setPhoto(Uri uri);
 
         void errorMsg(String msg);
     }
