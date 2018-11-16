@@ -133,19 +133,31 @@
                         android:text="@{feed.created_at}"
                         android:textSize="12sp" />
 
+                    <Button
+                        android:id="@+id/convertbt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/button_bg"
+                        android:text="convert"
+                        android:textAllCaps="false"
+                        android:textColor="?attr/colorText_" />
+
+                    <Button
+                        android:id="@+id/reset"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="8dp"
+                        android:layout_toStartOf="@+id/convertbt"
+                        android:background="@drawable/button_bg"
+                        android:text="reset"
+                        android:textAllCaps="false"
+                        android:textColor="?attr/colorText_" />
+
                 </RelativeLayout>
-
-                <Button
-                    android:id="@+id/convertbt"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:text="convert" />
-
-                <Button
-                    android:id="@+id/reset"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:text="reset"/>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
