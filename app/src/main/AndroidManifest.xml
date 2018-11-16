@@ -27,7 +27,7 @@
             android:launchMode="singleTop" />
 
         <activity android:name=".mvp.view.activity.ProfileActivity" />
-        <activity android:name=".mvp.view.activity.AboutActivity" />
+        <activity android:name=".mvp.view.activity.ReadActivity" />
         <activity android:name=".mvp.view.activity.SettingActivity" />
 
     </application>

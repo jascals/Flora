@@ -154,8 +154,8 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
             case R.id.profile:
                 ProfileActivity.start(this);
                 break;
-            case R.id.aboutme:
-                AboutActivity.start(this);
+            case R.id.read:
+                ReadActivity.start(this);
                 break;
             case R.id.setting:
                 SettingActivity.start(this);

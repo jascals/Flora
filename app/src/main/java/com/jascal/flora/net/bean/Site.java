@@ -5,6 +5,12 @@ import android.os.Parcelable;
 
 import java.util.List;
 
+/**
+ * @author ihave4cat
+ * @describe 图虫api
+ * @data on 2018/11/16 4:19 PM
+ * @email jascal@163.com
+ * */
 public class Site implements Parcelable {
     private String site_id;
     private String type;

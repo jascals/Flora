@@ -5,14 +5,17 @@
             android:id="@+id/home"
             android:icon="@mipmap/ic_home"
             android:title="@string/navigation_home" />
+
+        <item
+            android:id="@+id/read"
+            android:icon="@mipmap/ic_read"
+            android:title="@string/navigation_read" />
+
         <item
             android:id="@+id/profile"
             android:icon="@mipmap/ic_profile"
             android:title="@string/navigation_profile" />
-        <item
-            android:id="@+id/aboutme"
-            android:icon="@mipmap/ic_about"
-            android:title="@string/navigation_about" />
+
         <item
             android:id="@+id/setting"
             android:icon="@mipmap/ic_setting"

@@ -4,10 +4,10 @@ import android.content.Intent;
 
 import com.jascal.flora.base.BaseActivity;
 
-public class AboutActivity extends BaseActivity {
+public class ReadActivity extends BaseActivity {
 
     public static void start(BaseActivity activity) {
-        Intent intent = new Intent(activity, AboutActivity.class);
+        Intent intent = new Intent(activity, ReadActivity.class);
         activity.startActivity(intent);
     }
 }

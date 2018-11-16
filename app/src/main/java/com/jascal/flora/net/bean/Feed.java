@@ -6,6 +6,12 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author ihave4cat
+ * @describe 图虫api
+ * @data on 2018/11/16 4:19 PM
+ * @email jascal@163.com
+ * */
 public class Feed implements Parcelable {
     private int post_id;
     private String type;

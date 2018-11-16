@@ -3,6 +3,12 @@ package com.jascal.flora.net.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * @author ihave4cat
+ * @describe 图虫api
+ * @data on 2018/11/16 4:19 PM
+ * @email jascal@163.com
+ * */
 public class Image implements Parcelable {
     private int img_id;
     private int user_id;

@@ -16,7 +16,7 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static com.jascal.flora.net.Config.BASE_URL;
+import static com.jascal.flora.net.Config.BASE_TUCHONG_URL;
 
 public class FeedModel implements BaseModel {
     private String taken;
@@ -42,7 +42,7 @@ public class FeedModel implements BaseModel {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(logging).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(BASE_TUCHONG_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(client)

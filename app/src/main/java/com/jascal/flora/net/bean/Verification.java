@@ -3,6 +3,12 @@ package com.jascal.flora.net.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+/**
+ * @author ihave4cat
+ * @describe 图虫api
+ * @data on 2018/11/16 4:19 PM
+ * @email jascal@163.com
+ * */
 public class Verification implements Parcelable {
     private int verification;
     private String verification_reason;

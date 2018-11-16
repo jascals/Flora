@@ -4,7 +4,7 @@
 
     <string name="navigation_home">home</string>
     <string name="navigation_profile">profile</string>
-    <string name="navigation_about">aboutme</string>
+    <string name="navigation_read">the ont</string>
     <string name="navigation_setting">setting</string>
     <string name="navigation_theme">theme</string>
     <string name="navigation_lightness">lightness</string>
