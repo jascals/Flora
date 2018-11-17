@@ -1,11 +1,10 @@
 package com.jascal.flora.net.service;
 
-import com.jascal.flora.net.bean.Article;
-
-import okhttp3.RequestBody;
-import retrofit2.http.GET;
-import retrofit2.http.Query;
-import rx.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 
 /**
  * @author ihave4cat
@@ -14,6 +13,7 @@ import rx.Observable;
  * @email jascal@163.com
  */
 public interface ArticleService {
-    @GET("today?dev=1")
-    Observable<RequestBody> getArticle();
+    @POST("article/today?dev=1")
+    @Headers("Content-Type:application/json")
+    Call<ResponseBody> getArticle();
 }
