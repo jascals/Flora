@@ -1,5 +1,7 @@
 package com.jascal.flora.mvp;
 
+import android.content.Context;
+
 import com.jascal.flora.net.bean.Article;
 
 /**
@@ -18,6 +20,6 @@ public interface ReadContract {
     }
 
     interface Presenter {
-        void getArticle();
+        void getArticle(Context context);
     }
 }

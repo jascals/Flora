@@ -32,7 +32,7 @@ public class ReadActivity extends BaseActivity implements ReadContract.View {
         new ReadPresenter(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_article);
 
-        presenter.getArticle();
+        presenter.getArticle(this);
     }
 
     public static void start(BaseActivity activity) {

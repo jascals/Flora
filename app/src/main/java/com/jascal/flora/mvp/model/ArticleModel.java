@@ -3,6 +3,7 @@ package com.jascal.flora.mvp.model;
 import android.util.Log;
 
 import com.google.gson.Gson;
+import com.jascal.flora.cache.sp.SpHelper;
 import com.jascal.flora.net.bean.Article;
 
 import java.io.ByteArrayOutputStream;
