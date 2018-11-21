@@ -61,10 +61,10 @@ public class ArticleModel {
                         String result = streamToString(urlConn.getInputStream());
                         Article article = new Gson().fromJson(result, Article.class);
                         callback.onSuccess(article);
-                        Log.e("article", "Get方式请求成功，result--->" + result);
+                        Log.d("article", "Get方式请求成功，result--->" + result);
                     } else {
                         callback.onFailure(urlConn.getResponseMessage());
-                        Log.e("article", "Get方式请求失败");
+                        Log.d("article", "Get方式请求失败");
                     }
                     urlConn.disconnect();
                 } catch (IOException e) {

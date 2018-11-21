@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Flora</string>
     <string name="photo">Photo</string>
+    <string name="article">Article</string>
 
     <string name="navigation_home">home</string>
     <string name="navigation_profile">profile</string>
