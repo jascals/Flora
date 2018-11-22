@@ -47,11 +47,9 @@ public class FeedFragment extends BaseFragment implements FeedContract.View, Rec
         Ophelia.bind(this, view);
 
         new FeedPresenter(this);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         recyclerView.setLayoutManager(layoutManager);
         presenter.getShots(this.getContext());
-
         return view;
     }
 

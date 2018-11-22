@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,22 +22,16 @@ import com.jascal.flora.mvp.feed.FeedFragment;
 import com.jascal.flora.mvp.profile.ProfileActivity;
 import com.jascal.flora.mvp.setting.SettingActivity;
 import com.jascal.flora.utils.ThemeUtils;
-import com.jascal.flora.widget.DrawableTextView;
 import com.jascal.ophelia_annotation.BindView;
 import com.jascal.ophelia_annotation.OnClick;
 import com.jascal.ophelia_api.Ophelia;
 
-public class MainActivity extends BaseActivity implements MainContract.View,
-        NavigationView.OnNavigationItemSelectedListener {
-    private MainContract.Presenter presenter;
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
     @BindView(R.id.navigation)
     NavigationView navigationView;
-
-    @BindView(R.id.title)
-    DrawableTextView title;
 
     @OnClick(R.id.back)
     void openDrawer(View view) {
@@ -58,7 +53,6 @@ public class MainActivity extends BaseActivity implements MainContract.View,
         setContentView(R.layout.activity_main);
 
         Ophelia.bind(this);
-        new MainPresenter(this);
         initToolbar();
         initFragment();
 
@@ -89,11 +83,6 @@ public class MainActivity extends BaseActivity implements MainContract.View,
     }
 
     @Override
-    public void setPresenter(MainContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
-
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         item.setChecked(true);
         switch (item.getItemId()) {
@@ -104,6 +93,9 @@ public class MainActivity extends BaseActivity implements MainContract.View,
             case R.id.lightness:
                 SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, true);
                 MainActivity.reStart(this);
+                break;
+            case R.id.home:
+                drawerLayout.closeDrawer(navigationView);
                 break;
             case R.id.profile:
                 ProfileActivity.start(this);
