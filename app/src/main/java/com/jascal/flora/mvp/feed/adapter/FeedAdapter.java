@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp.main.adapter;
+package com.jascal.flora.mvp.feed.adapter;
 
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;

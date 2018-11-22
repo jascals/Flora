@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp.main.listener;
+package com.jascal.flora.mvp.feed.listener;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

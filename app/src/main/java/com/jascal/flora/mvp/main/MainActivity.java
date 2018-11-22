@@ -5,52 +5,35 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
 import com.jascal.flora.cache.Config;
 import com.jascal.flora.cache.sp.SpHelper;
-import com.jascal.flora.mvp.main.adapter.FeedAdapter;
-import com.jascal.flora.mvp.main.listener.RecyclerListener;
+import com.jascal.flora.mvp.feed.FeedFragment;
 import com.jascal.flora.mvp.profile.ProfileActivity;
 import com.jascal.flora.mvp.setting.SettingActivity;
-import com.jascal.flora.mvp.photo.PhotoActivity;
-import com.jascal.flora.net.bean.tc.Feed;
 import com.jascal.flora.utils.ThemeUtils;
 import com.jascal.flora.widget.DrawableTextView;
-import com.jascal.flora.widget.SpaceItemDecoration;
 import com.jascal.ophelia_annotation.BindView;
 import com.jascal.ophelia_annotation.OnClick;
 import com.jascal.ophelia_api.Ophelia;
 
-import java.util.List;
-
-public class MainActivity extends BaseActivity implements MainContract.View, RecyclerListener.OnItemClickListener,
+public class MainActivity extends BaseActivity implements MainContract.View,
         NavigationView.OnNavigationItemSelectedListener {
     private MainContract.Presenter presenter;
-    private List<Feed> feeds;
-
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
     @BindView(R.id.navigation)
     NavigationView navigationView;
-
-    @BindView(R.id.recycler)
-    RecyclerView recyclerView;
-
-    @BindView(R.id.progress)
-    ProgressBar progressBar;
 
     @BindView(R.id.title)
     DrawableTextView title;
@@ -61,7 +44,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
     }
 
     @OnClick(R.id.github)
-    void openGithub(View view){
+    void openGithub(View view) {
         Intent intent = new Intent();
         intent.setData(Uri.parse(com.jascal.flora.net.Config.GITHUB));
         intent.setAction(Intent.ACTION_VIEW);
@@ -77,45 +60,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
         Ophelia.bind(this);
         new MainPresenter(this);
         initToolbar();
-        initData();
+        initFragment();
 
-        // getInstanceState if necessary
+        // restoreInstanceState if necessary
         if (getIntent().getBooleanExtra("navigation", false)) {
             drawerLayout.openDrawer(navigationView);
         }
-    }
-
-    @Override
-    public void setPresenter(MainContract.Presenter presenter) {
-        this.presenter = presenter;
-    }
-
-    @Override
-    public void update(final List<Feed> feeds) {
-        this.feeds = feeds;
-        progressBar.setVisibility(View.INVISIBLE);
-        Toast.makeText(getApplicationContext(), "feeds num is " + feeds.size(), Toast.LENGTH_SHORT).show();
-
-        FeedAdapter feedAdapter = new FeedAdapter(feeds);
-        recyclerView.setAdapter(feedAdapter);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(30));
-        recyclerView.addOnItemTouchListener(new RecyclerListener(getApplicationContext(), recyclerView, this));
-    }
-
-    @Override
-    public void error(String message) {
-        Toast.makeText(getApplicationContext(), "get shots error:" + message, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onItemClick(View view, int position) {
-        showImage(feeds.get(position));
-    }
-
-    @Override
-    public void onItemLongClick(View view, int position) {
-        // TODO
-        Log.d("recyclerView", "long click");
     }
 
     private void initToolbar() {
@@ -130,14 +80,17 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
         });
     }
 
-    private void initData() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        presenter.getShots(getApplicationContext());
+    private void initFragment() {
+        FeedFragment feedFragment = new FeedFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.content, feedFragment);
+        transaction.commit();
     }
 
-    private void showImage(Feed feed) {
-        PhotoActivity.start(this, feed);
+    @Override
+    public void setPresenter(MainContract.Presenter presenter) {
+        this.presenter = presenter;
     }
 
     @Override

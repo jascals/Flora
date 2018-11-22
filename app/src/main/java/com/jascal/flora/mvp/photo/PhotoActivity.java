@@ -1,5 +1,6 @@
 package com.jascal.flora.mvp.photo;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
@@ -89,7 +90,7 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View, V
         binding.photo.setImageURI(uri);
     }
 
-    public static void start(BaseActivity activity, Feed feed) {
+    public static void start(Activity activity, Feed feed) {
         Intent intent = new Intent();
         intent.setClass(activity, PhotoActivity.class);
         intent.putExtra("feed", feed);

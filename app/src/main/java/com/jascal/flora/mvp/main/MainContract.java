@@ -10,15 +10,9 @@ public interface MainContract {
 
     interface View {
         void setPresenter(MainContract.Presenter presenter);
-
-        void update(List<Feed> feeds);
-
-        void error(String message);
-
     }
 
     interface Presenter {
-        void getShots(Context context);
     }
 
 }
