@@ -14,22 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mvp.main.MainActivity">
+        <activity android:name=".mvp.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".mvp.main.MainActivity"/>
         <activity
             android:name=".mvp.photo.PhotoActivity"
             android:launchMode="singleTop" />
-
-        <activity android:name=".mvp.profile.ProfileActivity" />
-        <activity android:name=".mvp.view.activity.ReadActivity" />
         <activity android:name=".mvp.setting.SettingActivity" />
-
+        <service
+            android:name=".utils.InitializeHelper"
+            android:exported="false" />
     </application>
 
 </manifest>

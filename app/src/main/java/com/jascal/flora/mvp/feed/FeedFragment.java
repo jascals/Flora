@@ -81,7 +81,7 @@ public class FeedFragment extends BaseFragment implements FeedContract.View, Rec
     }
 
     private void showImage(Feed feed) {
-        PhotoActivity.start(this.getActivity(), feed);
+        PhotoActivity.invoke(this.getActivity(), feed);
     }
 
     @Override

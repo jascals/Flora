@@ -90,7 +90,7 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View, V
         binding.photo.setImageURI(uri);
     }
 
-    public static void start(Activity activity, Feed feed) {
+    public static void invoke(Activity activity, Feed feed) {
         Intent intent = new Intent();
         intent.setClass(activity, PhotoActivity.class);
         intent.putExtra("feed", feed);

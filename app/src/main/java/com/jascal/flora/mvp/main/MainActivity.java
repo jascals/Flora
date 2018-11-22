@@ -92,11 +92,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (item.getItemId()) {
             case R.id.darkness:
                 SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, false);
-                MainActivity.reStart(this);
+                MainActivity.invoke(this, true);
                 break;
             case R.id.lightness:
                 SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, true);
-                MainActivity.reStart(this);
+                MainActivity.invoke(this, true);
                 break;
             case R.id.home:
                 manager.beginTransaction()
@@ -113,15 +113,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 drawerLayout.closeDrawer(navigationView);
                 break;
             case R.id.setting:
-                SettingActivity.start(this);
+                SettingActivity.invoke(this);
                 break;
         }
         return true;
     }
 
-    public static void reStart(MainActivity activity) {
+    public static void invoke(BaseActivity activity, boolean isDragged) {
         Intent intent = new Intent(activity, MainActivity.class);
-        intent.putExtra("navigation", true);
+        intent.putExtra("navigation", isDragged);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
