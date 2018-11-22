@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp.view.activity;
+package com.jascal.flora.mvp.setting;
 
 import android.content.Intent;
 

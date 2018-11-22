@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimaryLight_"
-    tools:context=".mvp.view.activity.ProfileActivity">
+    tools:context=".mvp.profile.ProfileActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

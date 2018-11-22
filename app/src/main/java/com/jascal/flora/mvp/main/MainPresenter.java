@@ -1,11 +1,10 @@
-package com.jascal.flora.mvp.presenter;
+package com.jascal.flora.mvp.main;
 
 import android.content.Context;
 
 import com.jascal.flora.base.BasePresenter;
 import com.jascal.flora.cache.sp.SpHelper;
-import com.jascal.flora.mvp.MainContract;
-import com.jascal.flora.mvp.model.FeedModel;
+import com.jascal.flora.mvp.main.model.FeedModel;
 import com.jascal.flora.net.bean.Feed;
 
 import java.util.List;

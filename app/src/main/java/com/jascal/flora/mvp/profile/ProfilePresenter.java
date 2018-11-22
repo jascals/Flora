@@ -1,6 +1,4 @@
-package com.jascal.flora.mvp.presenter;
-
-import com.jascal.flora.mvp.ProfileContract;
+package com.jascal.flora.mvp.profile;
 
 public class ProfilePresenter implements ProfileContract.Presenter {
     private ProfileContract.View view;

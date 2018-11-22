@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp.view.activity;
+package com.jascal.flora.mvp.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,6 @@ import android.support.v7.widget.Toolbar;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
-import com.jascal.flora.mvp.ProfileContract;
-import com.jascal.flora.mvp.presenter.ProfilePresenter;
 import com.jascal.flora.utils.ThemeUtils;
 import com.jascal.flora.widget.Draggable.DraggableSquareView;
 import com.jascal.ophelia_annotation.BindView;

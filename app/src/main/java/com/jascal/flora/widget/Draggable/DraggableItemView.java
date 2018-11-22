@@ -15,7 +15,7 @@ import com.facebook.rebound.Spring;
 import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 import com.jascal.flora.R;
-import com.jascal.flora.mvp.view.activity.ProfileActivity;
+import com.jascal.flora.mvp.profile.ProfileActivity;
 
 public class DraggableItemView extends FrameLayout {
 

@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp.model;
+package com.jascal.flora.mvp.photo.model;
 
 import android.content.Context;
 import android.graphics.Bitmap;

@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mvp.view.activity.MainActivity">
+        <activity android:name=".mvp.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,12 +23,12 @@
         </activity>
 
         <activity
-            android:name=".mvp.view.activity.PhotoActivity"
+            android:name=".mvp.photo.PhotoActivity"
             android:launchMode="singleTop" />
 
-        <activity android:name=".mvp.view.activity.ProfileActivity" />
+        <activity android:name=".mvp.profile.ProfileActivity" />
         <activity android:name=".mvp.view.activity.ReadActivity" />
-        <activity android:name=".mvp.view.activity.SettingActivity" />
+        <activity android:name=".mvp.setting.SettingActivity" />
 
     </application>
 

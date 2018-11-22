@@ -1,11 +1,9 @@
-package com.jascal.flora.mvp.view.adapter;
+package com.jascal.flora.mvp.main.adapter;
 
 import android.net.Uri;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.backends.pipeline.PipelineDraweeController;

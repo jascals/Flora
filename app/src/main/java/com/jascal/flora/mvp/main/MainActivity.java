@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp.view.activity;
+package com.jascal.flora.mvp.main;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -20,10 +20,11 @@ import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
 import com.jascal.flora.cache.Config;
 import com.jascal.flora.cache.sp.SpHelper;
-import com.jascal.flora.mvp.MainContract;
-import com.jascal.flora.mvp.presenter.MainPresenter;
-import com.jascal.flora.mvp.view.adapter.FeedAdapter;
-import com.jascal.flora.mvp.view.listener.RecyclerListener;
+import com.jascal.flora.mvp.main.adapter.FeedAdapter;
+import com.jascal.flora.mvp.main.listener.RecyclerListener;
+import com.jascal.flora.mvp.profile.ProfileActivity;
+import com.jascal.flora.mvp.setting.SettingActivity;
+import com.jascal.flora.mvp.photo.PhotoActivity;
 import com.jascal.flora.net.bean.Feed;
 import com.jascal.flora.utils.ThemeUtils;
 import com.jascal.flora.widget.DrawableTextView;
@@ -155,7 +156,6 @@ public class MainActivity extends BaseActivity implements MainContract.View, Rec
                 ProfileActivity.start(this);
                 break;
             case R.id.read:
-                ReadActivity.start(this);
                 break;
             case R.id.setting:
                 SettingActivity.start(this);

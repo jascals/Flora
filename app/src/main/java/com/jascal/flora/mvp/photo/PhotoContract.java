@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp;
+package com.jascal.flora.mvp.photo;
 
 import android.content.Context;
 import android.net.Uri;

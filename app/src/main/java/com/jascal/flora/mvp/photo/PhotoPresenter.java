@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp.presenter;
+package com.jascal.flora.mvp.photo;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,8 +6,7 @@ import android.net.Uri;
 
 import com.jascal.flora.base.BasePresenter;
 import com.jascal.flora.cache.file.StorageHelper;
-import com.jascal.flora.mvp.PhotoContract;
-import com.jascal.flora.mvp.model.TensorModel;
+import com.jascal.flora.mvp.photo.model.TensorModel;
 
 public class PhotoPresenter extends BasePresenter implements PhotoContract.Presenter {
     private PhotoContract.View view;

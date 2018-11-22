@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="?attr/colorPrimaryLight_"
-    tools:context=".mvp.view.activity.MainActivity">
+    tools:context=".mvp.main.MainActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"

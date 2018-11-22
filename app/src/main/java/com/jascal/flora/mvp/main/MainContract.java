@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp;
+package com.jascal.flora.mvp.main;
 
 import android.content.Context;
 

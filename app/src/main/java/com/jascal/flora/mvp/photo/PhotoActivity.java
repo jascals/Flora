@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp.view.activity;
+package com.jascal.flora.mvp.photo;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,8 +17,6 @@ import android.widget.Toast;
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
 import com.jascal.flora.databinding.ActivityPhotoBinding;
-import com.jascal.flora.mvp.PhotoContract;
-import com.jascal.flora.mvp.presenter.PhotoPresenter;
 import com.jascal.flora.net.Config;
 import com.jascal.flora.net.bean.Feed;
 import com.jascal.flora.utils.ThemeUtils;

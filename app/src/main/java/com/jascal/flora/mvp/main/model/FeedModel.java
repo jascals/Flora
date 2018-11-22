@@ -1,4 +1,4 @@
-package com.jascal.flora.mvp.model;
+package com.jascal.flora.mvp.main.model;
 
 import com.jascal.flora.base.BaseModel;
 import com.jascal.flora.net.bean.Feed;
