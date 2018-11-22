@@ -1,9 +1,9 @@
 package com.jascal.flora.mvp.main.model;
 
 import com.jascal.flora.base.BaseModel;
-import com.jascal.flora.net.bean.Feed;
-import com.jascal.flora.net.bean.Response;
-import com.jascal.flora.net.service.FeedService;
+import com.jascal.flora.net.bean.tc.Feed;
+import com.jascal.flora.net.bean.tc.Response;
+import com.jascal.flora.net.service.tc.FeedService;
 
 import java.util.List;
 

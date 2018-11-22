@@ -1,6 +1,6 @@
-package com.jascal.flora.net.service;
+package com.jascal.flora.net.service.tc;
 
-import com.jascal.flora.net.bean.Response;
+import com.jascal.flora.net.bean.tc.Response;
 
 import retrofit2.http.GET;
 import rx.Observable;

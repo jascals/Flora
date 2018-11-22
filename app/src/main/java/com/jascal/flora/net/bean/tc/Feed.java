@@ -1,4 +1,4 @@
-package com.jascal.flora.net.bean;
+package com.jascal.flora.net.bean.tc;
 
 import android.os.Parcel;
 import android.os.Parcelable;

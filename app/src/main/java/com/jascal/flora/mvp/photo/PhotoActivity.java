@@ -18,7 +18,7 @@ import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
 import com.jascal.flora.databinding.ActivityPhotoBinding;
 import com.jascal.flora.net.Config;
-import com.jascal.flora.net.bean.Feed;
+import com.jascal.flora.net.bean.tc.Feed;
 import com.jascal.flora.utils.ThemeUtils;
 
 public class PhotoActivity extends BaseActivity implements PhotoContract.View, View.OnClickListener {

@@ -1,4 +1,4 @@
-package com.jascal.flora.net.service;
+package com.jascal.flora.net.service.tc;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

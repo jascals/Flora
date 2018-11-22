@@ -6,11 +6,11 @@
 
         <variable
             name="feed"
-            type="com.jascal.flora.net.bean.Feed" />
+            type="com.jascal.flora.net.bean.tc.Feed" />
 
         <variable
             name="site"
-            type="com.jascal.flora.net.bean.Site" />
+            type="com.jascal.flora.net.bean.tc.Site" />
 
     </data>
 

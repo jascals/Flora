@@ -5,7 +5,7 @@ import android.content.Context;
 import com.jascal.flora.base.BasePresenter;
 import com.jascal.flora.cache.sp.SpHelper;
 import com.jascal.flora.mvp.main.model.FeedModel;
-import com.jascal.flora.net.bean.Feed;
+import com.jascal.flora.net.bean.tc.Feed;
 
 import java.util.List;
 

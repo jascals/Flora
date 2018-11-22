@@ -13,7 +13,7 @@ import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.jascal.flora.R;
 import com.jascal.flora.net.Config;
-import com.jascal.flora.net.bean.Feed;
+import com.jascal.flora.net.bean.tc.Feed;
 
 import java.util.List;
 

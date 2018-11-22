@@ -25,7 +25,7 @@ import com.jascal.flora.mvp.main.listener.RecyclerListener;
 import com.jascal.flora.mvp.profile.ProfileActivity;
 import com.jascal.flora.mvp.setting.SettingActivity;
 import com.jascal.flora.mvp.photo.PhotoActivity;
-import com.jascal.flora.net.bean.Feed;
+import com.jascal.flora.net.bean.tc.Feed;
 import com.jascal.flora.utils.ThemeUtils;
 import com.jascal.flora.widget.DrawableTextView;
 import com.jascal.flora.widget.SpaceItemDecoration;
