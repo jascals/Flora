@@ -87,6 +87,16 @@ public class DraggableSquareView extends ViewGroup {
         }
     }
 
+    public void setCallback(DraggableItemView.Callback callback) {
+        int len = allStatus.length;
+        for (int allStatu : allStatus) {
+            DraggableItemView itemView = getItemViewByStatus(allStatu);
+            if (itemView != null) {
+                itemView.setCallback(callback);
+            }
+        }
+    }
+
     public Point getOriginViewPos(int status) {
         return originViewPositionList.get(status);
     }

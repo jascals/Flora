@@ -15,7 +15,6 @@ import com.facebook.rebound.Spring;
 import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 import com.jascal.flora.R;
-import com.jascal.flora.mvp.profile.ProfileActivity;
 
 public class DraggableItemView extends FrameLayout {
 
@@ -80,9 +79,15 @@ public class DraggableItemView extends FrameLayout {
         initSpring();
     }
 
+    public Callback callback;
+
+    public void setCallback(Callback callback) {
+        this.callback = callback;
+    }
+
     private void pickImage() {
-        ProfileActivity profileActivity = (ProfileActivity) getContext();
-        profileActivity.pickImage(status, isDraggable());
+        if (callback == null) return;
+        callback.pickImage(status, isDraggable());
     }
 
     /**
@@ -287,6 +292,10 @@ public class DraggableItemView extends FrameLayout {
 
     public boolean isDraggable() {
         return imagePath != null;
+    }
+
+    public interface Callback {
+        void pickImage(int status, boolean draggable);
     }
 }
 

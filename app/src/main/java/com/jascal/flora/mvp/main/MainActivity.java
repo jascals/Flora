@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,7 +18,7 @@ import com.jascal.flora.base.BaseActivity;
 import com.jascal.flora.cache.Config;
 import com.jascal.flora.cache.sp.SpHelper;
 import com.jascal.flora.mvp.feed.FeedFragment;
-import com.jascal.flora.mvp.profile.ProfileActivity;
+import com.jascal.flora.mvp.profile.ProfileFragment;
 import com.jascal.flora.mvp.setting.SettingActivity;
 import com.jascal.flora.utils.ThemeUtils;
 import com.jascal.ophelia_annotation.BindView;
@@ -74,9 +73,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         });
     }
 
+    private FeedFragment feedFragment;
+    private ProfileFragment profileFragment;
+    private FragmentManager manager;
+
     private void initFragment() {
-        FeedFragment feedFragment = new FeedFragment();
-        FragmentManager manager = getSupportFragmentManager();
+        feedFragment = new FeedFragment();
+        profileFragment = new ProfileFragment();
+        manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.content, feedFragment);
         transaction.commit();
@@ -95,12 +99,18 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 MainActivity.reStart(this);
                 break;
             case R.id.home:
+                manager.beginTransaction()
+                        .replace(R.id.content, feedFragment)
+                        .commit();
                 drawerLayout.closeDrawer(navigationView);
                 break;
-            case R.id.profile:
-                ProfileActivity.start(this);
-                break;
             case R.id.read:
+                break;
+            case R.id.profile:
+                manager.beginTransaction()
+                        .replace(R.id.content, profileFragment)
+                        .commit();
+                drawerLayout.closeDrawer(navigationView);
                 break;
             case R.id.setting:
                 SettingActivity.start(this);
