@@ -19,6 +19,7 @@ import com.jascal.flora.cache.Config;
 import com.jascal.flora.cache.sp.SpHelper;
 import com.jascal.flora.mvp.feed.FeedFragment;
 import com.jascal.flora.mvp.profile.ProfileFragment;
+import com.jascal.flora.mvp.read.ReadFragment;
 import com.jascal.flora.mvp.setting.SettingActivity;
 import com.jascal.flora.utils.ThemeUtils;
 import com.jascal.ophelia_annotation.BindView;
@@ -74,11 +75,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private FeedFragment feedFragment;
+    private ReadFragment readFragment;
     private ProfileFragment profileFragment;
     private FragmentManager manager;
 
     private void initFragment() {
         feedFragment = new FeedFragment();
+        readFragment = new ReadFragment();
         profileFragment = new ProfileFragment();
         manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -105,6 +108,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 drawerLayout.closeDrawer(navigationView);
                 break;
             case R.id.read:
+                manager.beginTransaction()
+                        .replace(R.id.content, readFragment)
+                        .commit();
+                drawerLayout.closeDrawer(navigationView);
                 break;
             case R.id.profile:
                 manager.beginTransaction()
