@@ -12,9 +12,12 @@ import android.widget.ProgressBar;
 
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseFragment;
+import com.jascal.flora.net.bean.gank.News;
 import com.jascal.flora.net.bean.gank.NewsResponse;
 import com.jascal.ophelia_annotation.BindView;
 import com.jascal.ophelia_api.Ophelia;
+
+import java.util.List;
 
 /**
  * @author ihave4cat
@@ -48,6 +51,15 @@ public class ReadFragment extends BaseFragment implements ReadContract.View {
     @Override
     public void update(NewsResponse newsResponse) {
         progressBar.setVisibility(View.INVISIBLE);
+        List<String> cato = newsResponse.getCategory();
+        List<News> android = newsResponse.getResults().getAndroid();
+        List<News> ios = newsResponse.getResults().getIOS();
+        List<News> app = newsResponse.getResults().getApp();
+        List<News> video = newsResponse.getResults().getVideo();
+        List<News> expand = newsResponse.getResults().getExpand();
+        List<News> things = newsResponse.getResults().getThings();
+        List<News> beauty = newsResponse.getResults().getBeauty();
+
         Log.d("read", "success in fragment:" + newsResponse.toString());
         Log.d("read", "success in fragment:" + newsResponse.getCategory().toString());
         Log.d("read", "success in fragment:" + newsResponse.getResults().getAndroid().toString());
