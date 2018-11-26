@@ -15,40 +15,35 @@ import java.util.Random;
 public class PhotoPresenter extends BasePresenter implements PhotoContract.Presenter {
     private PhotoContract.View view;
 
-    public static final int DRAK_MODEL = 0;
-
-    public PhotoPresenter(PhotoContract.View view) {
+    PhotoPresenter(PhotoContract.View view) {
         this.view = view;
         this.view.setPresenter(this);
     }
 
     @Override
     public void convert(Uri uri, final Context context, int model) {
-        switch (model) {
-            case DRAK_MODEL:
-                TensorModel tensorModel = new TensorModel(context);
-                tensorModel.setCallback(new TensorModel.Callback() {
-                    @Override
-                    public void onSuccess(Bitmap result) {
-                        view.setPhoto(StorageHelper.saveBitmap(context, result, getRandomFileName()+".jpg"));
-                    }
+        TensorModel tensorModel = new TensorModel(context);
+        tensorModel.setCallback(new TensorModel.Callback() {
+            @Override
+            public void onSuccess(Bitmap result) {
+                view.setPhoto(StorageHelper.saveBitmap(context, result, getRandomFileName() + ".jpg"));
+            }
 
-                    @Override
-                    public void onFailure(Uri uri, Throwable throwable) {
-                        view.errorMsg(throwable.getMessage());
-                    }
+            @Override
+            public void onFailure(Uri uri, Throwable throwable) {
+                view.errorMsg(throwable.getMessage());
+            }
 
-                    @Override
-                    public void onCancel(Uri uri) {
-                        view.errorMsg("canceled.");
-                    }
-                });
-                tensorModel.convert(uri);
-                break;
-        }
+            @Override
+            public void onCancel(Uri uri) {
+                view.errorMsg("canceled.");
+            }
+        });
+        tensorModel.setModel(model);
+        tensorModel.convert(uri);
     }
 
-    public String getRandomFileName() {
+    private String getRandomFileName() {
         SimpleDateFormat simpleDateFormat;
         simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         Date date = new Date();

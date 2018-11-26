@@ -28,6 +28,7 @@ public class TensorModel implements BaseModel {
     private static final String OUTPUT_NODE = "transformer/expand/conv3/conv/Sigmoid";
     private Callback callback;
     private TensorFlowInferenceInterface inferenceInterface;
+    private int model;
 
     public TensorModel(Context context) {
         inferenceInterface = new TensorFlowInferenceInterface(context.getAssets(), MODEL_FILE);
@@ -100,10 +101,9 @@ public class TensorModel implements BaseModel {
             floatValues[i * 3 + 2] = (val & 0xFF) / 255.0f;
         }
         for (int i = 0; i < NUM_STYLES; ++i) {
-//            styleVals[i] = 0.1f * i / NUM_STYLES;
             styleVals[i] = 0f;
         }
-        styleVals[1] = 1f;
+        styleVals[model] = 1f;
 
         // Copy the input data into TensorFlow.
         Log.d("tensor", "Width: " + bitmap.getWidth() + ", Height: " + bitmap.getHeight());
@@ -135,6 +135,13 @@ public class TensorModel implements BaseModel {
                 callback.onSuccess(result);
             }
         });
+    }
+
+    public void setModel(int model) {
+        if(model>NUM_STYLES){
+            throw new IllegalArgumentException("style index out of bound!");
+        }
+        this.model = model;
     }
 
     public interface Callback {

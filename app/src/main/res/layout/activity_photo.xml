@@ -124,24 +124,12 @@
                         android:textSize="12sp" />
 
                     <Button
-                        android:id="@+id/convertbt"
+                        android:id="@+id/reset"
                         android:layout_width="wrap_content"
                         android:layout_height="28dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="16dp"
-                        android:background="@drawable/button_bg"
-                        android:text="convert"
-                        android:textAllCaps="false"
-                        android:textColor="?attr/colorText_" />
-
-                    <Button
-                        android:id="@+id/reset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="28dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="8dp"
-                        android:layout_toStartOf="@+id/convertbt"
                         android:background="@drawable/button_bg"
                         android:text="reset"
                         android:textAllCaps="false"
@@ -149,23 +137,37 @@
 
                 </RelativeLayout>
 
-                <com.facebook.drawee.view.SimpleDraweeView
-                    android:id="@+id/photo"
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
                     android:layout_gravity="top|start"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
-                    app:fadeDuration="500" />
+                    android:layout_marginTop="16dp">
 
-                <GridLayout
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        app:fadeDuration="500" />
+
+                    <ProgressBar
+                        android:id="@+id/progress"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"/>
+                </FrameLayout>
+
+                <com.jascal.flora.widget.StyledGrid.StylizedGridView
                     android:id="@+id/grid"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
+                    android:horizontalSpacing="10dp"
                     android:numColumns="7"
-                    android:stretchMode="columnWidth" />
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="5dp" />
+
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
