@@ -8,6 +8,10 @@ import com.jascal.flora.base.BasePresenter;
 import com.jascal.flora.cache.file.StorageHelper;
 import com.jascal.flora.mvp.photo.model.TensorModel;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
 public class PhotoPresenter extends BasePresenter implements PhotoContract.Presenter {
     private PhotoContract.View view;
 
@@ -26,7 +30,7 @@ public class PhotoPresenter extends BasePresenter implements PhotoContract.Prese
                 tensorModel.setCallback(new TensorModel.Callback() {
                     @Override
                     public void onSuccess(Bitmap result) {
-                        view.setPhoto(StorageHelper.saveBitmap(context, result, "flora_result.jpg"));
+                        view.setPhoto(StorageHelper.saveBitmap(context, result, getRandomFileName()+".jpg"));
                     }
 
                     @Override
@@ -42,5 +46,15 @@ public class PhotoPresenter extends BasePresenter implements PhotoContract.Prese
                 tensorModel.convert(uri);
                 break;
         }
+    }
+
+    public String getRandomFileName() {
+        SimpleDateFormat simpleDateFormat;
+        simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date date = new Date();
+        String str = simpleDateFormat.format(date);
+        Random random = new Random();
+        int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;// 获取5位随机数
+        return rannum + str;// 当前时间
     }
 }

@@ -63,7 +63,7 @@ public class NewsResponse implements Parcelable {
         private List<News> Things;
 
         @SerializedName("福利")
-        private List<News> Things;
+        private List<News> Beauty;
 
         public List<News> getAndroid() {
             return Android;

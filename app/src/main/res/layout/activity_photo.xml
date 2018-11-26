@@ -158,6 +158,14 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     app:fadeDuration="500" />
+
+                <GridLayout
+                    android:id="@+id/grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:numColumns="7"
+                    android:stretchMode="columnWidth" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </android.support.design.widget.CoordinatorLayout>
