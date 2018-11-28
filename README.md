@@ -23,7 +23,6 @@
 * Dribbble api is available only to select applications with their approval. Remain in branch [#dribbble](https://github.com/MashirosBaumkuchen/Flora/tree/dribbble), solved code&taken. 
 
 * Now is working in [#master](https://github.com/MashirosBaumkuchen/Flora/tree/master), using another api. 
-* Now is working in [#master](https://github.com/MashirosBaumkuchen/Flora/tree/master), using another api.
 
 # license
 
