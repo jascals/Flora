@@ -3,6 +3,7 @@ package com.jascal.flora.net.bean.gank;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,6 +13,22 @@ import java.util.List;
  * @email jascal@163.com
  */
 public class News implements Parcelable {
+    @Override
+    public String toString() {
+        return "News{" +
+                "_id='" + _id + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                ", desc='" + desc + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                ", source='" + source + '\'' +
+                ", type='" + type + '\'' +
+                ", url='" + url + '\'' +
+                ", used=" + used +
+                ", who='" + who + '\'' +
+                ", images=" + images +
+                '}';
+    }
+
     /**
      * _id : 5bebebc89d21223dd5066107
      * createdAt : 2018-11-14T09:32:56.867Z
@@ -33,7 +50,7 @@ public class News implements Parcelable {
     private String url;
     private boolean used;
     private String who;
-    private List<String> images;
+    private List<String> images = new ArrayList<>();
 
     public String get_id() {
         return _id;

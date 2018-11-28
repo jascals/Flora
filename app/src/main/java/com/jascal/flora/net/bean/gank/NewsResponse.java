@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class NewsResponse implements Parcelable {
     /**
-     * category : ["App","拓展资源","iOS","瞎推荐","Android","福利","休息视频"]
+     * category : ["App","拓展资源","iOS","前端","Android","福利","休息视频"]
      * error : false
      * results : {"Android":[],"App":[],"iOS":[],"休息视频":[],"拓展资源":[],"瞎推荐":[],"福利":[]}
      */
@@ -49,6 +49,19 @@ public class NewsResponse implements Parcelable {
     }
 
     public static class ResultsBean implements Parcelable {
+        @Override
+        public String toString() {
+            return "ResultsBean{" +
+                    "Android=" + Android +
+                    ", App=" + App +
+                    ", iOS=" + iOS +
+                    ", Video=" + Video +
+                    ", Expand=" + Expand +
+                    ", Things=" + Things +
+                    ", Beauty=" + Beauty +
+                    '}';
+        }
+
         private List<News> Android;
         private List<News> App;
         private List<News> iOS;
@@ -59,7 +72,7 @@ public class NewsResponse implements Parcelable {
         @SerializedName("拓展资源")
         private List<News> Expand;
 
-        @SerializedName("瞎推荐")
+        @SerializedName("前端")
         private List<News> Things;
 
         @SerializedName("福利")
@@ -195,4 +208,13 @@ public class NewsResponse implements Parcelable {
             return new NewsResponse[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "NewsResponse{" +
+                "error=" + error +
+                ", results=" + results +
+                ", category=" + category +
+                '}';
+    }
 }

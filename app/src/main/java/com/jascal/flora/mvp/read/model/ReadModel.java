@@ -1,5 +1,7 @@
 package com.jascal.flora.mvp.read.model;
 
+import android.util.Log;
+
 import com.jascal.flora.base.BaseModel;
 import com.jascal.flora.net.Config;
 import com.jascal.flora.net.bean.gank.NewsResponse;
