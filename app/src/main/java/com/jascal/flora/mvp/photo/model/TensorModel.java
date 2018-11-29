@@ -138,7 +138,7 @@ public class TensorModel implements BaseModel {
     }
 
     public void setModel(int model) {
-        if(model>NUM_STYLES){
+        if (model > NUM_STYLES) {
             throw new IllegalArgumentException("style index out of bound!");
         }
         this.model = model;

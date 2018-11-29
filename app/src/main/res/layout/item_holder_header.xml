@@ -11,12 +11,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="4dp"
+        android:gravity="center_vertical"
         android:text="Example"
         android:textColor="?attr/colorPrimaryText_"
-        android:textSize="16sp"
+        android:textSize="12sp"
         android:textStyle="bold"
-        app:drawable_height="28dp"
+        app:drawable_height="20dp"
         app:drawable_location="left"
-        app:drawable_src="@mipmap/ic_setting"
-        app:drawable_width="28dp"/>
+        app:drawable_src="@mipmap/ic_list"
+        app:drawable_width="20dp" />
 </LinearLayout>

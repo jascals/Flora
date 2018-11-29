@@ -15,7 +15,7 @@ import com.jascal.flora.R;
  * @email jascal@163.com
  */
 public class Header extends ViewHolder {
-    private static final String[] sTitles = new String[]{"Label", "Login", "Choice"};
+    private static final String[] sTitles = new String[]{"theme choice", "profile setting"};
     private ImageView icon;
     private TextView title;
 
@@ -25,8 +25,8 @@ public class Header extends ViewHolder {
         title = itemView.findViewById(R.id.title);
     }
 
-    public void setTitle(String title) {
-        this.title.setText(title);
+    public void setTitle(int position) {
+        this.title.setText(sTitles[position]);
     }
 
     public static Header create(ViewGroup parent) {

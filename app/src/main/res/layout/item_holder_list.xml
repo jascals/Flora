@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_half"
-        android:text="Choose Progress Style"
+        android:text="profile editor"
         android:textColor="?attr/colorSecondaryText_" />
 
     <View
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_half"
-        android:text="Choose Download Files"
+        android:text="Clean flora`s cache"
         android:textColor="?attr/colorSecondaryText_" />
 
 </LinearLayout>

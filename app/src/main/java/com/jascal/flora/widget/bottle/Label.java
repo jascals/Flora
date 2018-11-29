@@ -8,7 +8,13 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.jascal.flora.R;
+import com.jascal.flora.cache.Config;
+import com.jascal.flora.cache.sp.SpHelper;
+import com.jascal.flora.mvp.main.MainActivity;
+import com.jascal.flora.mvp.setting.SettingFragment;
 import com.jascal.flora.widget.DrawableTextView;
+
+import java.util.logging.Handler;
 
 /**
  * @author ihave4cat
@@ -29,7 +35,6 @@ public class Label extends ViewHolder {
         tap.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // TODO
             }
         });
     }
