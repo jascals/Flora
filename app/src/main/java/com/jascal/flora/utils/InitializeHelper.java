@@ -38,7 +38,7 @@ public class InitializeHelper extends IntentService {
 
     private void performInit() {
         initFresco();
-        initFonts();
+//        initFonts();
     }
 
     private void initFonts() {

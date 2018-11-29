@@ -1,7 +1,7 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:typeface">serif</item>
+        <item name="android:typeface">monospace</item>
         <item name="android:windowAnimationStyle">@style/windowAnim</item>
     </style>
 
