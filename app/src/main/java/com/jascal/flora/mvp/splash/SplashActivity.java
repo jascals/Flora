@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
+import com.jascal.flora.mvp.feed.FeedFragment;
 import com.jascal.flora.mvp.main.MainActivity;
 
 /**
@@ -40,7 +41,7 @@ public class SplashActivity extends BaseActivity {
     class DelayRunnable implements Runnable {
         @Override
         public void run() {
-            MainActivity.invoke(SplashActivity.this, false);
+            MainActivity.invoke(SplashActivity.this, false, FeedFragment.class.getSimpleName());
         }
     }
 }

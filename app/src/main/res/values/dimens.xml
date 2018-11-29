@@ -6,4 +6,5 @@
     <dimen name="main_interval_v1">5dp</dimen>
     <dimen name="main_interval_v2">10dp</dimen>
     <dimen name="main_interval_v3">15dp</dimen>
+    <dimen name="padding_half">8dp</dimen>
 </resources>

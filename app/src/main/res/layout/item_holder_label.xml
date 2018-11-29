@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/ic_card_background"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_half">
+
+    <com.jascal.flora.widget.DrawableTextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:drawablePadding="@dimen/padding_half"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_half"
+        android:text="setting"
+        android:textColor="?attr/colorPrimaryText_"
+        android:textSize="19sp"
+        app:drawable_height="28dp"
+        app:drawable_location="left"
+        app:drawable_src="@mipmap/ic_setting"
+        app:drawable_width="28dp"/>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:autoLink="all"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_half"
+        android:text="setting item describe"
+        android:textColor="?attr/colorPrimaryText_"
+        android:textColorHighlight="?attr/colorPrimary"
+        android:textColorLink="?attr/colorSecondaryText_"
+        android:textSize="14sp" />
+
+    <Switch
+        android:id="@+id/tap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/title"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>
