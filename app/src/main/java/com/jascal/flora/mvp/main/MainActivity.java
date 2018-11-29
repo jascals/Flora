@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -15,12 +14,13 @@ import android.view.View.OnClickListener;
 
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
+import com.jascal.flora.base.BaseFragment;
 import com.jascal.flora.cache.Config;
 import com.jascal.flora.cache.sp.SpHelper;
 import com.jascal.flora.mvp.feed.FeedFragment;
 import com.jascal.flora.mvp.profile.ProfileFragment;
 import com.jascal.flora.mvp.read.ReadFragment;
-import com.jascal.flora.mvp.setting.SettingActivity;
+import com.jascal.flora.mvp.setting.SettingFragment;
 import com.jascal.flora.utils.ThemeUtils;
 import com.jascal.ophelia_annotation.BindView;
 import com.jascal.ophelia_annotation.OnClick;
@@ -55,11 +55,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Ophelia.bind(this);
         initToolbar();
         initFragment();
-
-        // restoreInstanceState if necessary
-        if (getIntent().getBooleanExtra("navigation", false)) {
-            drawerLayout.openDrawer(navigationView);
-        }
     }
 
     private void initToolbar() {
@@ -77,16 +72,25 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private FeedFragment feedFragment;
     private ReadFragment readFragment;
     private ProfileFragment profileFragment;
+    private SettingFragment settingFragment;
     private FragmentManager manager;
 
     private void initFragment() {
         feedFragment = new FeedFragment();
         readFragment = new ReadFragment();
         profileFragment = new ProfileFragment();
+        settingFragment = new SettingFragment();
         manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.content, feedFragment);
-        transaction.commit();
+
+        // restoreInstanceState when reStart if necessary
+        if (getIntent().getBooleanExtra("navigation", false)) {
+            drawerLayout.openDrawer(navigationView);
+        }
+        if (getIntent().getStringExtra("fragment").equals("SettingFragment")) {
+            turn(settingFragment, false);
+        } else {
+            turn(feedFragment, false);
+        }
     }
 
     @Override
@@ -95,40 +99,42 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (item.getItemId()) {
             case R.id.darkness:
                 SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, false);
-                MainActivity.invoke(this, true);
+                MainActivity.invoke(this, true, FeedFragment.class.getSimpleName());
                 break;
             case R.id.lightness:
                 SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, true);
-                MainActivity.invoke(this, true);
+                MainActivity.invoke(this, true, FeedFragment.class.getSimpleName());
                 break;
             case R.id.home:
-                manager.beginTransaction()
-                        .replace(R.id.content, feedFragment)
-                        .commit();
-                drawerLayout.closeDrawer(navigationView);
+                turn(feedFragment, true);
                 break;
             case R.id.read:
-                manager.beginTransaction()
-                        .replace(R.id.content, readFragment)
-                        .commit();
-                drawerLayout.closeDrawer(navigationView);
+                turn(readFragment, true);
                 break;
             case R.id.profile:
-                manager.beginTransaction()
-                        .replace(R.id.content, profileFragment)
-                        .commit();
-                drawerLayout.closeDrawer(navigationView);
+                turn(profileFragment, true);
                 break;
             case R.id.setting:
-                SettingActivity.invoke(this);
+                turn(settingFragment, true);
                 break;
         }
         return true;
     }
 
-    public static void invoke(BaseActivity activity, boolean isDragged) {
+    private void turn(BaseFragment fragment, boolean showAnim) {
+        SpHelper.getInstance(this).put(Config.SP_FRAGMENT, fragment.getTAG());
+        manager.beginTransaction()
+                .replace(R.id.content, fragment)
+                .commit();
+        if (showAnim) {
+            drawerLayout.closeDrawer(navigationView);
+        }
+    }
+
+    public static void invoke(BaseActivity activity, boolean isDragged, String who) {
         Intent intent = new Intent(activity, MainActivity.class);
         intent.putExtra("navigation", isDragged);
+        intent.putExtra("fragment", who);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);

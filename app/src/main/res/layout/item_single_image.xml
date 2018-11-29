@@ -15,15 +15,18 @@
             android:id="@+id/item_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_margin="8dp"
             android:maxLines="1"
-            android:textSize="12sp" />
+            android:textColor="?attr/colorPrimaryText_"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/item_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:textColor="?attr/colorSecondaryText_"
             android:maxLines="1"
             android:textSize="12sp" />
 
