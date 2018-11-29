@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -97,14 +98,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         item.setChecked(true);
         switch (item.getItemId()) {
-            case R.id.darkness:
-                SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, false);
-                MainActivity.invoke(this, true, FeedFragment.class.getSimpleName());
-                break;
-            case R.id.lightness:
-                SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, true);
-                MainActivity.invoke(this, true, FeedFragment.class.getSimpleName());
-                break;
+//            case R.id.darkness:
+//                SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, false);
+//                MainActivity.invoke(this, true, FeedFragment.class.getSimpleName());
+//                break;
+//            case R.id.lightness:
+//                SpHelper.getInstance(MainActivity.this).put(Config.SP_THEME_KEY, true);
+//                MainActivity.invoke(this, true, FeedFragment.class.getSimpleName());
+//                break;
             case R.id.home:
                 turn(feedFragment, true);
                 break;
@@ -121,11 +122,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         return true;
     }
 
+    private BaseFragment currentFragment;
+
     private void turn(BaseFragment fragment, boolean showAnim) {
         SpHelper.getInstance(this).put(Config.SP_FRAGMENT, fragment.getTAG());
-        manager.beginTransaction()
-                .replace(R.id.content, fragment)
-                .commit();
+        FragmentTransaction transaction = manager.beginTransaction();
+        if (!fragment.isAdded()) {
+            if (currentFragment != null) {
+                transaction.hide(currentFragment);
+            }
+            transaction.add(R.id.content, fragment, fragment.getClass().getSimpleName());
+        } else {
+            transaction.hide(currentFragment).show(fragment);
+        }
+        currentFragment = fragment;
+        transaction.commit();
         if (showAnim) {
             drawerLayout.closeDrawer(navigationView);
         }
