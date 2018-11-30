@@ -88,8 +88,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         settingFragment = new SettingFragment();
         manager = getSupportFragmentManager();
         drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
-            private boolean isClicked;
-
             @Override
             public void onDrawerSlide(@NonNull View view, float v) {
 
@@ -97,13 +95,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
             @Override
             public void onDrawerOpened(@NonNull View view) {
-                isClicked = false;
             }
 
             @Override
             public void onDrawerClosed(@NonNull View view) {
                 Log.d("fragmentManager", "onDrawerClosed");
-
                 firstShow(waitingFragment);
             }
 

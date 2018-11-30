@@ -135,6 +135,8 @@
                         android:textAllCaps="false"
                         android:textColor="?attr/colorText_" />
 
+                    <!--android:background="@drawable/button_bg"-->
+
                 </RelativeLayout>
 
                 <FrameLayout

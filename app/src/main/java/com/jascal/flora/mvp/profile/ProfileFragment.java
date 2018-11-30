@@ -42,7 +42,6 @@ public class ProfileFragment extends BaseFragment implements DraggableItemView.C
 
     @Override
     public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
     }
 
     @Override

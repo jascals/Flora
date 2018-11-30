@@ -84,8 +84,11 @@ public class TensorModel implements BaseModel {
         }, UiThreadImmediateExecutorService.getInstance());
     }
 
-
-    private int desiredSize = 1024;
+    /**
+     * in ihave4cat`s mi4, 1024 would run into out of memory, sigh...
+     * 512 is running ok, but it`s display worse.
+     * */
+    private int desiredSize = 512;
     private final float[] styleVals = new float[NUM_STYLES];
     private int[] intValues = new int[desiredSize * desiredSize];
     private float[] floatValues = new float[desiredSize * desiredSize * 3];
