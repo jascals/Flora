@@ -66,6 +66,11 @@ public class ReadFragment extends BaseFragment implements ReadContract.View {
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
+
+    @Override
     public void setPresenter(ReadContract.Presenter presenter) {
         this.presenter = presenter;
     }

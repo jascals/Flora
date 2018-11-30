@@ -9,9 +9,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ProgressBar;
 
 import com.jascal.flora.R;
 import com.jascal.flora.base.BaseActivity;
@@ -33,6 +35,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @BindView(R.id.navigation)
     NavigationView navigationView;
+
+    @BindView(R.id.progress)
+    ProgressBar progressBar;
 
     @OnClick(R.id.back)
     void openDrawer(View view) {
@@ -82,16 +87,42 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         profileFragment = new ProfileFragment();
         settingFragment = new SettingFragment();
         manager = getSupportFragmentManager();
+        drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            private boolean isClicked;
+
+            @Override
+            public void onDrawerSlide(@NonNull View view, float v) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(@NonNull View view) {
+                isClicked = false;
+            }
+
+            @Override
+            public void onDrawerClosed(@NonNull View view) {
+                Log.d("fragmentManager", "onDrawerClosed");
+
+                firstShow(waitingFragment);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int i) {
+
+            }
+        });
 
         // restoreInstanceState when reStart if necessary
         if (getIntent().getBooleanExtra("navigation", false)) {
             drawerLayout.openDrawer(navigationView);
         }
         if (getIntent().getStringExtra("fragment").equals("SettingFragment")) {
-            turn(settingFragment, false);
+            firstShow(settingFragment);
         } else {
-            turn(feedFragment, false);
+            firstShow(feedFragment);
         }
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -107,39 +138,90 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 //                MainActivity.invoke(this, true, FeedFragment.class.getSimpleName());
 //                break;
             case R.id.home:
-                turn(feedFragment, true);
+                if (feedFragment.isAdded()) {
+                    turn(feedFragment);
+                    drawerLayout.closeDrawer(navigationView);
+                    break;
+                }
+                waitingFragment = feedFragment;
+                drawerLayout.closeDrawer(navigationView);
+                showProgress();
                 break;
             case R.id.read:
-                turn(readFragment, true);
+                if (readFragment.isAdded()) {
+                    turn(readFragment);
+                    drawerLayout.closeDrawer(navigationView);
+                    break;
+                }
+                waitingFragment = readFragment;
+                drawerLayout.closeDrawer(navigationView);
+                showProgress();
                 break;
             case R.id.profile:
-                turn(profileFragment, true);
+                if (profileFragment.isAdded()) {
+                    turn(profileFragment);
+                    drawerLayout.closeDrawer(navigationView);
+                    break;
+                }
+                waitingFragment = profileFragment;
+                drawerLayout.closeDrawer(navigationView);
+                showProgress();
                 break;
             case R.id.setting:
-                turn(settingFragment, true);
+                if (settingFragment.isAdded()) {
+                    turn(settingFragment);
+                    drawerLayout.closeDrawer(navigationView);
+                    break;
+                }
+                Log.d("fragmentManager", "click setting");
+                waitingFragment = settingFragment;
+                drawerLayout.closeDrawer(navigationView);
+                showProgress();
                 break;
         }
         return true;
     }
 
-    private BaseFragment currentFragment;
+    /**
+     * when the fragment is first showed, process into this method, to display animation smoothly.
+     */
+    private void showProgress() {
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.hide(currentFragment);
+        transaction.commit();
+        progressBar.setVisibility(View.VISIBLE);
+    }
 
-    private void turn(BaseFragment fragment, boolean showAnim) {
+    /**
+     * the fragment to be show, see {showProgress()}
+     */
+    private BaseFragment waitingFragment;
+
+    /**
+     * first show method, see {showProgress()}.
+     */
+    private void firstShow(BaseFragment fragment) {
+        if (fragment.isAdded()) {
+            return;
+        }
+        Log.d("fragmentManager", "add fragment:" + fragment.getClass().getSimpleName());
         SpHelper.getInstance(this).put(Config.SP_FRAGMENT, fragment.getTAG());
         FragmentTransaction transaction = manager.beginTransaction();
-        if (!fragment.isAdded()) {
-            if (currentFragment != null) {
-                transaction.hide(currentFragment);
-            }
-            transaction.add(R.id.content, fragment, fragment.getClass().getSimpleName());
-        } else {
-            transaction.hide(currentFragment).show(fragment);
-        }
+        progressBar.setVisibility(View.INVISIBLE);
+        transaction.add(R.id.content, fragment, fragment.getClass().getSimpleName());
         currentFragment = fragment;
         transaction.commit();
-        if (showAnim) {
-            drawerLayout.closeDrawer(navigationView);
-        }
+    }
+
+    private BaseFragment currentFragment;
+
+    private void turn(BaseFragment fragment) {
+        SpHelper.getInstance(this).put(Config.SP_FRAGMENT, fragment.getTAG());
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.hide(currentFragment).show(fragment);
+        progressBar.setVisibility(View.INVISIBLE);
+        currentFragment = fragment;
+        transaction.commit();
     }
 
     public static void invoke(BaseActivity activity, boolean isDragged, String who) {

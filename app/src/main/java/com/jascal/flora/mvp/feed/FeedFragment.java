@@ -71,6 +71,11 @@ public class FeedFragment extends BaseFragment implements FeedContract.View, Rec
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
+
+    @Override
     public void error(String message) {
         Toast.makeText(this.getContext(), "get shots error:" + message, Toast.LENGTH_LONG).show();
     }

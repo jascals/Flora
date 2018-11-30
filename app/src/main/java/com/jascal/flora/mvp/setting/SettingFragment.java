@@ -38,6 +38,11 @@ public class SettingFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
+
     private void initView() {
         LinearLayoutManager manager = new LinearLayoutManager(this.getContext());
         manager.setSmoothScrollbarEnabled(true);
