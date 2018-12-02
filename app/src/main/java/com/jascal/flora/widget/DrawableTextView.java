@@ -3,12 +3,12 @@ package com.jascal.flora.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import com.jascal.flora.R;
 
@@ -43,6 +43,25 @@ public class DrawableTextView extends android.support.v7.widget.AppCompatTextVie
         mLocation = a.getInt(R.styleable.DrawableTextView_drawable_location, LEFT);
 
         a.recycle();
+    }
+
+    public void setBitmapDirection(int direction) {
+        this.mLocation = direction;
+    }
+
+    public void setBitmaoResource(int resource) {
+        this.mDrawable = getResources().getDrawable(resource);
+    }
+
+    public void setBitmap(int res, int dir) {
+        setBitmaoResource(res);
+        setBitmapDirection(dir);
+        invalidate();
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
         drawDrawable();
     }
 

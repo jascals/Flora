@@ -3,10 +3,9 @@ package com.jascal.flora.widget.bottle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.jascal.flora.R;
+import com.jascal.flora.widget.DrawableTextView;
 
 /**
  * @author ihave4cat
@@ -15,18 +14,18 @@ import com.jascal.flora.R;
  * @email jascal@163.com
  */
 public class Header extends ViewHolder {
-    private static final String[] sTitles = new String[]{"theme choice", "profile setting"};
-    private ImageView icon;
-    private TextView title;
+    private static final String[] titles = new String[]{"theme choice", "profile setting"};
+    private static final int[] icons = new int[]{R.mipmap.ic_theme, R.mipmap.ic_list};
+    private DrawableTextView drawableTextView;
 
     private Header(View itemView) {
         super(itemView);
-        icon = itemView.findViewById(R.id.icon);
-        title = itemView.findViewById(R.id.title);
+        drawableTextView = itemView.findViewById(R.id.title);
     }
 
-    public void setTitle(int position) {
-        this.title.setText(sTitles[position]);
+    public void setRes(int position) {
+        this.drawableTextView.setBitmap(icons[position], DrawableTextView.LEFT);
+        this.drawableTextView.setText(titles[position]);
     }
 
     public static Header create(ViewGroup parent) {

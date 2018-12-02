@@ -30,7 +30,7 @@ public class GroupAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         if (viewHolder instanceof Header) {
-            ((Header) viewHolder).setTitle(titleIndexs.get(position));
+            ((Header) viewHolder).setRes(titleIndexs.get(position));
         }
     }
 
