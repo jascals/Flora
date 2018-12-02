@@ -205,6 +205,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         FragmentTransaction transaction = manager.beginTransaction();
         progressBar.setVisibility(View.INVISIBLE);
         transaction.add(R.id.content, fragment, fragment.getClass().getSimpleName());
+        waitingFragment = fragment;
         currentFragment = fragment;
         transaction.commit();
     }
