@@ -22,17 +22,17 @@
             android:title="@string/navigation_setting" />
     </group>
 
-    <item android:title="@string/navigation_theme">
-        <menu>
-            <item
-                android:id="@+id/lightness"
-                android:icon="@mipmap/ic_lightness"
-                android:orderInCategory="100"
-                android:title="@string/navigation_lightness" />
-            <item
-                android:id="@+id/darkness"
-                android:icon="@mipmap/ic_darkness"
-                android:title="@string/navigation_darkness" />
-        </menu>
-    </item>
+    <!--<item android:title="@string/navigation_theme">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/lightness"-->
+                <!--android:icon="@mipmap/ic_lightness"-->
+                <!--android:orderInCategory="100"-->
+                <!--android:title="@string/navigation_lightness" />-->
+            <!--<item-->
+                <!--android:id="@+id/darkness"-->
+                <!--android:icon="@mipmap/ic_darkness"-->
+                <!--android:title="@string/navigation_darkness" />-->
+        <!--</menu>-->
+    <!--</item>-->
 </menu>

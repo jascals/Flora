@@ -2,16 +2,23 @@ package com.jascal.flora.mvp.setting;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jascal.flora.R;
+import com.jascal.flora.base.BaseActivity;
 import com.jascal.flora.base.BaseFragment;
+import com.jascal.flora.cache.Config;
+import com.jascal.flora.cache.sp.SpHelper;
+import com.jascal.flora.mvp.main.MainActivity;
 import com.jascal.flora.mvp.setting.adapter.GroupAdapter;
 import com.jascal.flora.widget.bottle.ViewHolder;
 import com.jascal.ophelia_annotation.BindView;
@@ -24,9 +31,33 @@ import com.jascal.ophelia_api.Ophelia;
  * @email jascal@163.com
  */
 public class SettingFragment extends BaseFragment {
+    public static final int MSG_THEME_CHANGE = 0;
 
     @BindView(R.id.recycler)
     RecyclerView recyclerView;
+
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            Log.d("themeSwitcher", "get msg: " + msg.obj.toString());
+            switch (msg.what) {
+                case MSG_THEME_CHANGE:
+                    boolean isChecked = (boolean) msg.obj;
+                    if (isChecked) {
+                        // light
+                        SpHelper.getInstance(SettingFragment.this.getContext()).put(Config.SP_THEME_KEY, true);
+                        MainActivity.invoke((BaseActivity) SettingFragment.this.getActivity(), false, SettingFragment.class.getSimpleName());
+                        break;
+                    } else {
+                        // dark
+                        SpHelper.getInstance(SettingFragment.this.getContext()).put(Config.SP_THEME_KEY, false);
+                        MainActivity.invoke((BaseActivity) SettingFragment.this.getActivity(), false, SettingFragment.class.getSimpleName());
+                        break;
+                    }
+            }
+            return false;
+        }
+    });
 
     @Nullable
     @Override
@@ -65,11 +96,11 @@ public class SettingFragment extends BaseFragment {
             }
         });
         recyclerView.setLayoutManager(manager);
-        GroupAdapter adapter = new GroupAdapter();
+        GroupAdapter adapter = new GroupAdapter(handler);
         recyclerView.setAdapter(adapter);
         adapter.addViewHolderType(
                 ViewHolder.HOLDER_HEADER,
-                ViewHolder.HOLDER_LABEL,
+                ViewHolder.HOLDER_THEME_SWITCHER,
                 ViewHolder.HOLDER_HEADER,
                 ViewHolder.HOLDER_LIST
         );
