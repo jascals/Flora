@@ -5,6 +5,7 @@
 * DataBinding & a custom view-binder annotation framework [Ophelia](https://github.com/MashirosBaumkuchen/Ophelia)
 * [rxjava2](https://github.com/ReactiveX/RxJava)+[retrofit2](https://square.github.io/retrofit/)+[okhttp3](https://github.com/square/okhttp)
 * apply [tensorflow lite](https://github.com/tensorflow/tensorflow), 20+ different style to stylized image
+* use IPC to solved OOM problem, the stylized action work on tensor process, which is separated from app process.
 * custom multi-type recyclerView
 * [fresco](https://github.com/facebook/fresco)
 * custom rebound Draggable view
