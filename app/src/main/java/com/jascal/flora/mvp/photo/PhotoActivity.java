@@ -2,11 +2,14 @@ package com.jascal.flora.mvp.photo;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -24,6 +27,7 @@ import com.jascal.flora.mvp.photo.adapter.ImageBoxAdapter;
 import com.jascal.flora.net.Config;
 import com.jascal.flora.net.bean.tc.Feed;
 import com.jascal.flora.utils.ThemeUtils;
+import com.jascal.tensor.IFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,6 +51,7 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View, V
         binding = DataBindingUtil.setContentView(this, R.layout.activity_photo);
         initToolbar();
         initData();
+        initAIDL();
 
         String[] PERMISSIONS = {
                 "android.permission.READ_EXTERNAL_STORAGE",
@@ -56,6 +61,43 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View, V
         if (permission != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, PERMISSIONS, 1);
         }
+    }
+
+    private IFactory factory;
+
+    private void initAIDL() {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.MAKERSERVICE");
+        intent.setPackage("com.jascal.tensor");
+        bindService(intent, conn, BIND_AUTO_CREATE);
+    }
+
+    private ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            factory = IFactory.Stub.asInterface(iBinder);
+            if (factory != null) {
+                Toast.makeText(PhotoActivity.this, "ready", Toast.LENGTH_SHORT).show();
+//                try {
+//                    factory.stylizeImage(null, 0);
+//                } catch (RemoteException e) {
+//                    e.printStackTrace();
+//                }
+            } else {
+                Log.d("launched", "factory==null");
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(conn);
     }
 
     @Override
@@ -96,7 +138,7 @@ public class PhotoActivity extends BaseActivity implements PhotoContract.View, V
                 } else {
                     isRunning = true;
                     binding.progress.setVisibility(View.VISIBLE);
-                    presenter.convert(originPath, PhotoActivity.this.getApplicationContext(), position);
+                    presenter.convert(originPath, factory, PhotoActivity.this.getApplicationContext(), position);
                 }
             }
         });

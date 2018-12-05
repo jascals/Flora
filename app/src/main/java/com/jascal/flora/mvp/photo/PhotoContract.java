@@ -3,6 +3,8 @@ package com.jascal.flora.mvp.photo;
 import android.content.Context;
 import android.net.Uri;
 
+import com.jascal.tensor.IFactory;
+
 public interface PhotoContract {
 
     interface View {
@@ -14,6 +16,6 @@ public interface PhotoContract {
     }
 
     interface Presenter {
-        void convert(Uri uri, Context context, int model);
+        void convert(Uri uri, IFactory factory, Context context, int model);
     }
 }

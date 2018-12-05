@@ -7,6 +7,7 @@ import android.net.Uri;
 import com.jascal.flora.base.BasePresenter;
 import com.jascal.flora.cache.file.StorageHelper;
 import com.jascal.flora.mvp.photo.model.TensorModel;
+import com.jascal.tensor.IFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +22,7 @@ public class PhotoPresenter extends BasePresenter implements PhotoContract.Prese
     }
 
     @Override
-    public void convert(Uri uri, final Context context, int model) {
+    public void convert(Uri uri, IFactory factory, final Context context, int model) {
         TensorModel tensorModel = new TensorModel(context);
         tensorModel.setCallback(new TensorModel.Callback() {
             @Override
@@ -40,6 +41,7 @@ public class PhotoPresenter extends BasePresenter implements PhotoContract.Prese
             }
         });
         tensorModel.setModel(model);
+        tensorModel.setFactory(factory);
         tensorModel.convert(uri);
     }
 
