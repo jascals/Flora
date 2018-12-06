@@ -27,6 +27,9 @@ Flora is an open source application, focus on image stylization. And its also a 
 
 * Now is working in [#master](https://github.com/MashirosBaumkuchen/Flora/tree/master), using another api. 
 
+# NOTICE
+launch tensor module before stylized picture.
+
 # license
 
 ```
