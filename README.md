@@ -1,6 +1,6 @@
 # Flora
 
-Flora is an open source application, focus on image stylization. And its also a pratice project of 冬.
+Flora is an open source application, focus on image stylization. And its also a practicing project of 冬.
 
 * mvp
 * material design 
