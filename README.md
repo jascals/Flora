@@ -1,5 +1,7 @@
 # Flora
 
+Flora is an open source application, focus on image stylization. And its also a pratice project of 冬.
+
 * mvp
 * material design 
 * DataBinding & a custom view-binder annotation framework [Ophelia](https://github.com/MashirosBaumkuchen/Ophelia)
