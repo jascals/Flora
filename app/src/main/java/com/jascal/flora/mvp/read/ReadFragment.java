@@ -80,13 +80,14 @@ public class ReadFragment extends BaseFragment implements ReadContract.View {
         Log.d("read_", "success in fragment:" + newsResponse.getResults().getAndroid().toString());
         progressBar.setVisibility(View.INVISIBLE);
 //        multiAdapter.setData(newsResponse.getResults().getAndroid());
-        Tin tin = new Tin.Builder().setDate(newsResponse.getResults().getAndroid())
+        Tin tin = new Tin.Builder()
+                .setDate(newsResponse.getResults().getAndroid())
                 .append(newsResponse.getResults().getIOS())
                 .append(newsResponse.getResults().getApp())
-                .append(newsResponse.getResults().getExpand())
-                .append(newsResponse.getResults().getThings())
+//                .append(newsResponse.getResults().getExpand())
+//                .append(newsResponse.getResults().getThings())
                 .append(newsResponse.getResults().getBeauty())
-                .append(newsResponse.getResults().getVideo())
+//                .append(newsResponse.getResults().getVideo())
                 .build();
         Log.d("read_", "tin size is " + tin.getNews().size());
         multiAdapter.setData(tin.getNews());
