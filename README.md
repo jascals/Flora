@@ -20,7 +20,7 @@ Flora is an open source application, focus on image stylization. And its also a 
 # show
 
 ## display
-<div align=center>
+<div>
   
   <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/17.png" width="201" height="358" />
   <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/11.png" width="201" height="358" />
@@ -30,15 +30,15 @@ Flora is an open source application, focus on image stylization. And its also a 
 </div>
 
 ## theme darkness
-<div align=center>
+<div>
   
-  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/8.png" width="201" height="358" />
+  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/12.png" width="201" height="358" />
   <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/1.png" width="201" height="358" />
 
 </div>
 
 ## stylized page
-<div align=center>
+<div>
   
   <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/18.png" width="201" height="358" />
   <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/16.png" width="201" height="358" />
