@@ -17,6 +17,35 @@ Flora is an open source application, focus on image stylization. And its also a 
 * parcelable data
 * ...
 
+# show
+
+## display
+<div>
+  
+  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/17.png" width="201" height="358" />
+  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/11.png" width="201" height="358" />
+  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/15.png" width="201" height="358" />
+  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/4.png" width="201" height="358" />
+
+</div>
+
+## theme darkness
+<div>
+  
+  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/12.png" width="201" height="358" />
+  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/1.png" width="201" height="358" />
+
+</div>
+
+## stylized page
+<div>
+  
+  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/18.png" width="201" height="358" />
+  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/16.png" width="201" height="358" />
+  <img src="https://github.com/MashirosBaumkuchen/Flora/blob/master/screenShots/5.png" width="201" height="358" />
+
+</div>
+
 # api
 
 * tuchong api
