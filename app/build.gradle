@@ -16,40 +16,34 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding{
+    dataBinding {
         enabled true
     }
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
-
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:palette-v7:28.0.0'
-
     implementation 'io.reactivex:rxjava:1.3.0'
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-
     implementation 'com.github.MashirosBaumkuchen.Ophelia:ophelia-api:v1.0'
     implementation 'com.github.MashirosBaumkuchen.Ophelia:ophelia-annotation:v1.0'
     annotationProcessor 'com.github.MashirosBaumkuchen.Ophelia:ophelia-compiler:v1.0'
-
     implementation 'com.facebook.fresco:fresco:1.8.1'
     implementation 'com.facebook.rebound:rebound:0.3.8'
-
     implementation 'org.tensorflow:tensorflow-android:+'
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
 }

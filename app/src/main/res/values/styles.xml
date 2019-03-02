@@ -3,6 +3,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:typeface">monospace</item>
         <item name="android:windowAnimationStyle">@style/windowAnim</item>
+        <item name="android:windowBackground">@mipmap/bg_splash</item>
     </style>
 
     <style name="lightness" parent="AppTheme">
