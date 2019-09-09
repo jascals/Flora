@@ -13,30 +13,82 @@ import java.util.List;
  * @email jascal@163.com
  * */
 public class Feed implements Parcelable {
+
+    /**
+     * post_id : 49647264
+     * type : multi-photo
+     * url : https://shijunqian.tuchong.com/49647264/
+     * site_id : 303555
+     * author_id : 303555
+     * published_at : 2019-08-18 08:09:47
+     * passed_time : 08月18日
+     * excerpt : 人与星球
+     * favorites : 79
+     * comments : 3
+     * rewardable : true
+     * parent_comments : 3
+     * rewards : 0
+     * views : 2299
+     * collected : false
+     * shares : 2
+     * recommend : true
+     * delete : false
+     * update : false
+     * content : 人与星球
+     * title :
+     * image_count : 1
+     * images : []
+     * title_image : null
+     * tags : ["我要上开屏","发现自然之美","荒地","地质学","沙","一个人","黏土","手机摄影","沙质的","发热的","土壤","背影","沙漠","雅丹","干旱","干"]
+     * event_tags : ["我要上开屏","发现自然之美"]
+     * favorite_list_prefix : []
+     * reward_list_prefix : []
+     * comment_list_prefix : []
+     * data_type : post
+     * created_at : 2019-08-18 08:09:47
+     * sites : []
+     * site : {}
+     * recom_type :
+     * rqt_id : ff77c2a844573ecc8bccb0745d0dfc06
+     * is_favorite : false
+     */
+
     private int post_id;
     private String type;
     private String url;
     private String site_id;
     private String author_id;
     private String published_at;
+    private String passed_time;
     private String excerpt;
     private int favorites;
     private int comments;
+    private boolean rewardable;
+    private String parent_comments;
+    private String rewards;
+    private int views;
+    private boolean collected;
+    private int shares;
+    private boolean recommend;
     private boolean delete;
     private boolean update;
     private String content;
     private String title;
     private int image_count;
+    private String title_image;
     private String data_type;
     private String created_at;
     private Site site;
     private String recom_type;
     private String rqt_id;
     private boolean is_favorite;
-    private List<Image> images = new ArrayList<>();
+    private List<Image> images;
     private List<String> tags;
     private List<String> event_tags;
-    private List<Site> sites = new ArrayList<>();
+    private List<Object> favorite_list_prefix;
+    private List<Object> reward_list_prefix;
+    private List<Object> comment_list_prefix;
+    private List<Site> sites;
 
     public int getPost_id() {
         return post_id;
@@ -86,6 +138,14 @@ public class Feed implements Parcelable {
         this.published_at = published_at;
     }
 
+    public String getPassed_time() {
+        return passed_time;
+    }
+
+    public void setPassed_time(String passed_time) {
+        this.passed_time = passed_time;
+    }
+
     public String getExcerpt() {
         return excerpt;
     }
@@ -108,6 +168,62 @@ public class Feed implements Parcelable {
 
     public void setComments(int comments) {
         this.comments = comments;
+    }
+
+    public boolean isRewardable() {
+        return rewardable;
+    }
+
+    public void setRewardable(boolean rewardable) {
+        this.rewardable = rewardable;
+    }
+
+    public String getParent_comments() {
+        return parent_comments;
+    }
+
+    public void setParent_comments(String parent_comments) {
+        this.parent_comments = parent_comments;
+    }
+
+    public String getRewards() {
+        return rewards;
+    }
+
+    public void setRewards(String rewards) {
+        this.rewards = rewards;
+    }
+
+    public int getViews() {
+        return views;
+    }
+
+    public void setViews(int views) {
+        this.views = views;
+    }
+
+    public boolean isCollected() {
+        return collected;
+    }
+
+    public void setCollected(boolean collected) {
+        this.collected = collected;
+    }
+
+    public int getShares() {
+        return shares;
+    }
+
+    public void setShares(int shares) {
+        this.shares = shares;
+    }
+
+    public boolean isRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(boolean recommend) {
+        this.recommend = recommend;
     }
 
     public boolean isDelete() {
@@ -148,6 +264,14 @@ public class Feed implements Parcelable {
 
     public void setImage_count(int image_count) {
         this.image_count = image_count;
+    }
+
+    public String getTitle_image() {
+        return title_image;
+    }
+
+    public void setTitle_image(String title_image) {
+        this.title_image = title_image;
     }
 
     public String getData_type() {
@@ -222,42 +346,36 @@ public class Feed implements Parcelable {
         this.event_tags = event_tags;
     }
 
+    public List<Object> getFavorite_list_prefix() {
+        return favorite_list_prefix;
+    }
+
+    public void setFavorite_list_prefix(List<Object> favorite_list_prefix) {
+        this.favorite_list_prefix = favorite_list_prefix;
+    }
+
+    public List<Object> getReward_list_prefix() {
+        return reward_list_prefix;
+    }
+
+    public void setReward_list_prefix(List<Object> reward_list_prefix) {
+        this.reward_list_prefix = reward_list_prefix;
+    }
+
+    public List<Object> getComment_list_prefix() {
+        return comment_list_prefix;
+    }
+
+    public void setComment_list_prefix(List<Object> comment_list_prefix) {
+        this.comment_list_prefix = comment_list_prefix;
+    }
+
     public List<Site> getSites() {
         return sites;
     }
 
     public void setSites(List<Site> sites) {
         this.sites = sites;
-    }
-
-    @Override
-    public String toString() {
-        return "Feed{" +
-                "post_id=" + post_id +
-                ", type='" + type + '\'' +
-                ", url='" + url + '\'' +
-                ", site_id='" + site_id + '\'' +
-                ", author_id='" + author_id + '\'' +
-                ", published_at='" + published_at + '\'' +
-                ", excerpt='" + excerpt + '\'' +
-                ", favorites=" + favorites +
-                ", comments=" + comments +
-                ", delete=" + delete +
-                ", update=" + update +
-                ", content='" + content + '\'' +
-                ", title='" + title + '\'' +
-                ", image_count=" + image_count +
-                ", data_type='" + data_type + '\'' +
-                ", created_at='" + created_at + '\'' +
-                ", site=" + site +
-                ", recom_type='" + recom_type + '\'' +
-                ", rqt_id='" + rqt_id + '\'' +
-                ", is_favorite=" + is_favorite +
-                ", images=" + images +
-                ", tags=" + tags +
-                ", event_tags=" + event_tags +
-                ", sites=" + sites +
-                '}';
     }
 
     @Override
@@ -273,14 +391,23 @@ public class Feed implements Parcelable {
         dest.writeString(this.site_id);
         dest.writeString(this.author_id);
         dest.writeString(this.published_at);
+        dest.writeString(this.passed_time);
         dest.writeString(this.excerpt);
         dest.writeInt(this.favorites);
         dest.writeInt(this.comments);
+        dest.writeByte(this.rewardable ? (byte) 1 : (byte) 0);
+        dest.writeString(this.parent_comments);
+        dest.writeString(this.rewards);
+        dest.writeInt(this.views);
+        dest.writeByte(this.collected ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.shares);
+        dest.writeByte(this.recommend ? (byte) 1 : (byte) 0);
         dest.writeByte(this.delete ? (byte) 1 : (byte) 0);
         dest.writeByte(this.update ? (byte) 1 : (byte) 0);
         dest.writeString(this.content);
         dest.writeString(this.title);
         dest.writeInt(this.image_count);
+        dest.writeString(this.title_image);
         dest.writeString(this.data_type);
         dest.writeString(this.created_at);
         dest.writeParcelable(this.site, flags);
@@ -290,6 +417,9 @@ public class Feed implements Parcelable {
         dest.writeTypedList(this.images);
         dest.writeStringList(this.tags);
         dest.writeStringList(this.event_tags);
+        dest.writeList(this.favorite_list_prefix);
+        dest.writeList(this.reward_list_prefix);
+        dest.writeList(this.comment_list_prefix);
         dest.writeTypedList(this.sites);
     }
 
@@ -303,14 +433,23 @@ public class Feed implements Parcelable {
         this.site_id = in.readString();
         this.author_id = in.readString();
         this.published_at = in.readString();
+        this.passed_time = in.readString();
         this.excerpt = in.readString();
         this.favorites = in.readInt();
         this.comments = in.readInt();
+        this.rewardable = in.readByte() != 0;
+        this.parent_comments = in.readString();
+        this.rewards = in.readString();
+        this.views = in.readInt();
+        this.collected = in.readByte() != 0;
+        this.shares = in.readInt();
+        this.recommend = in.readByte() != 0;
         this.delete = in.readByte() != 0;
         this.update = in.readByte() != 0;
         this.content = in.readString();
         this.title = in.readString();
         this.image_count = in.readInt();
+        this.title_image = in.readString();
         this.data_type = in.readString();
         this.created_at = in.readString();
         this.site = in.readParcelable(Site.class.getClassLoader());
@@ -320,6 +459,12 @@ public class Feed implements Parcelable {
         this.images = in.createTypedArrayList(Image.CREATOR);
         this.tags = in.createStringArrayList();
         this.event_tags = in.createStringArrayList();
+        this.favorite_list_prefix = new ArrayList<Object>();
+        in.readList(this.favorite_list_prefix, Object.class.getClassLoader());
+        this.reward_list_prefix = new ArrayList<Object>();
+        in.readList(this.reward_list_prefix, Object.class.getClassLoader());
+        this.comment_list_prefix = new ArrayList<Object>();
+        in.readList(this.comment_list_prefix, Object.class.getClassLoader());
         this.sites = in.createTypedArrayList(Site.CREATOR);
     }
 

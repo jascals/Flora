@@ -9,6 +9,8 @@ import com.jascal.tensor.IFactory;
 
 import org.tensorflow.contrib.android.TensorFlowInferenceInterface;
 
+import java.util.Arrays;
+
 /**
  * @author ihave4cat
  * @describe TODO
@@ -34,6 +36,7 @@ public class Factory extends IFactory.Stub {
 
     @Override
     public Bitmap stylizeImage(Bitmap bitmap, int model) {
+
         Log.d("launched", "stylized in tensor module");
         TensorFlowInferenceInterface inferenceInterface = new TensorFlowInferenceInterface(context.getAssets(), MODEL_FILE);
         bitmap = Bitmap.createScaledBitmap(bitmap, desiredSize, desiredSize, false);
